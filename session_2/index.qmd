@@ -1,7 +1,8 @@
 ---
-title: "Introduction to DSGE models"
+title: "Small Open Economy Extension"
 format:
     revealjs:
+        navigation-mode: grid
         layout: wide
         toc: true
         toc-depth: 1
@@ -9,324 +10,84 @@ format:
 ---
 
 
+## Why a small open economy?
 
-## Model
 
-A very concise representation of a model
+what are the classical reasons to open:
+    - financial integration
+      - smooth shock
+    - trade integration
 
-$$\mathbb{E}_t \left[ f(y_{t+1}, y_t, y_{t-1}, \epsilon_t) \right]= 0$$
+what is financial integration:
+    complete financial market? what does it mean
+    riskfree bond
 
-The ingredients:
 
-- $y_t$: the vector of endogenous variables
-- $\epsilon_t$: the vector of exogenous variables
-- $f$: the model equations
 
-The solution: $g$ such that $$y_t = g(y_{t-1},\epsilon_t)$$
+## Empirical Facts
 
+puzzles...
 
-::: notes
-The situation is different when one is making a perfect foresight simulation.
-:::
 
-##  Steady-state
+## Deterministic Small Open Economy
 
-The deterministic steady-state satisfies:
 
-$$ f(\overline{y},\overline{y}, \overline{y}, 0)= 0$$
+model setup
 
 
+world interest rate
 
-## The implicit system {auto-animate="true"}
+derive solution
 
-Replacing the solution $$y_t = g(y_{t-1},\epsilon_t)$$ in the system
-$$\mathbb{E}_t \left[ f(y_{t+1}, y_t, y_{t-1}, \epsilon_t) \right]= 0$$
+trade balance: ${TB}_t=y_t-c_t$
+current account: ${CA}_t = TB_t + r a_t$
 
-we obtain:
+assume $\beta(1+r) = 1$
 
-$$\mathbb{E}_t \left[ f(g(g(y_t,\epsilon_{t+1}),\epsilon_t), g(y_{t-1},\epsilon_t), y_{t-1}, \epsilon_t) \right]= 0$$
 
-It is an equation defining implicitly the function $g()$
+Consumption level: 
 
-## {auto-animate="true"}
+$c_0 = ...permanent income$
 
-$$\mathbb{E}_t \left[ f(g(g(y_t,\epsilon_{t+1}),\epsilon_t), g(y_{t-1},\epsilon_t), y_{t-1}, \epsilon_t) \right]= 0$$
 
-In this expression, $y_{t-1},\epsilon_t$ is the state-space.
+-> intertemporal approach to the current account
+    - procyclical trade balance
 
-Dropping the time subscripts, the equation must be satisfied for any realization of $(y,\epsilon)$
-$$\forall (y,\epsilon)\  \Phi(g)(y,\epsilon) = \mathbb{E}_{\epsilon'} \left[ f(g(g(y,\epsilon'),\epsilon), g(y,\epsilon), y, \epsilon) \right]= 0$$
+-> what is the steady-state?
 
-It is a functional equation $\Phi(g)=0$
+## Stationarize the distribution
 
-## Expected shocks
+## Add back capital
 
-Assume $|y_t-\overline{y}|<<1$,$|\epsilon|<<1$,$|\epsilon'|<<1$
+-> simple but trivial investment dynamis
 
-First we can perform a Taylor expansion with respect to future shock:
+How to fix volatility of investment?
 
-\begin{align}
- & & \mathbb{E}_{\epsilon'} \left[ f(g(g(y,\epsilon'),\epsilon), g(y,\epsilon), y, \epsilon) \right]  \\
-= & &  \mathbb{E}_{\epsilon'}\left[ f(g(g(y,0),\epsilon), g(y,\epsilon), y, \epsilon) \right] \\ 
-  & & +  \mathbb{E}_{\epsilon'} \left[ f^{\prime}_{y_{t+1}}(g(g(y,\epsilon'),\epsilon), g(y,\epsilon), y, \epsilon) g^{\prime}_y g^{\prime}_{\epsilon} \epsilon^\prime\right] + o(\epsilon^{\prime}) \\
-\approx & & f(g(g(y,0),\epsilon), g(y,\epsilon), y, \epsilon)
-\end{align}
+...
 
-. . .
+-> solution add adjustment costs
 
-This uses the fact that $\mathbb{E}\left[ \epsilon^{\prime}\right] = 0$. At first order, expected shocks play no role.
+model pas super: un parametre un momen
 
+## Add non tradables
 
-## First order perturbation
+countercyclical trade balance
 
-We are left with the system:
 
-$$F(y,\epsilon) = f(g(g(y,0),\epsilon), g(y,\epsilon), y, \epsilon) = 0$$
+# A quantitative SOE moel
 
-We can now use a variant of the implicit function theorem to recover a first approximation of $g$ as:
-$$g(y,\epsilon) = \overline{y} + g^{\prime}_{y} (y-\overline{y}) + g^{\prime}_e \epsilon_t $$
+ Schmitt
+Grohe and Uribe JIE (2004) 
 
-We can obtain the unknown quantities $g^{\prime}_y$,  and $g^{\prime}_e$ using the methods of undeterminate coefficients.
+## Result:
 
-Use these to write $F^{\prime}_y(\overline{y}, 0) = 0$ and $F^{\prime}_\epsilon(\overline{y}, 0) = 0$.
+Schmitt-Grohe & Uribe
 
-## The transition matrix
+# Conclusion
 
-Recall the system:
-$$F(y,\epsilon) = f(g(g(y,0),\epsilon), g(y,\epsilon), y, \epsilon) = 0$$
+## Towards IRBC models
 
+## What as small open economy problems?
 
-We have $$F^{\prime}_y(\overline{y}, 0) = f^{\prime}_{y_{t+1}} g^{\prime}_y g^{\prime}_y + f^{\prime}_{y_{t}} g^{\prime}_y + f^{\prime}_{y_{t-1}} = 0 $$
-
-Or $$A X^2 + B X + C$$ where $A,B,C$ and $X=g^{\prime}_y$ are square matrices.
-
-
-## The Riccatti Equation
-
-Recall the system:
-$$F(y,\epsilon) = f(g(g(y,0),\epsilon), g(y,\epsilon), y, \epsilon) = 0$$
-
-
-We have $$F^{\prime}_y(\overline{y}, 0) = f^{\prime}_{y_{t+1}} g^{\prime}_y g^{\prime}_y + f^{\prime}_{y_{t}} g^{\prime}_y + f^{\prime}_{y_{t-1}} = 0 $$
-
-This is a specific Riccatti equation  $$A X^2 + B X + C$$ where $A,B,C$ and $X=g^{\prime}_y$ are square matrices $\in \mathbb{R}^n \times \mathbb{R}^n$
-
-## First Order Deterministic Model
-
-Let's pause a minute to observe the first order deterministic model:
-$$A X^2 + B X + C$$
-
-From our intuition in dimension 1, we know there must be multiple solutions
-
-- how do we find them?
-- how do we select the right ones?
-
-Obviously, the dynamics of the model are given by $y_t = X y_{t-1}$.
-
-For the solution  to the model to be stationary, the spectral radius of $X$ should be smaller than 1.
-
-::: notes
-
-TODO: make a specific slide about the dynamics
-
-:::
-
-## Multiplicity of solution
-
-It is possible to show that the system is associated with $2 n$ generalized eigenvalues:
-
-$$|\lambda_1| \leq \cdots \leq |\lambda_{2 n}|$$
-
-For each choice $C$ of $n$ eigenvalues ($|C|=n$), a specific fundamental solution $X_C$ can be *constructed*. It has eigenvalues $C$.
-
-This is at least $\left(\begin{matrix} 2 n \\ n \end{matrix}\right)$ different combinations.
-
-Then any linear combination of two solutions is also a solution...
-
-## Well defined model
-
-
-
-A model is well defined when there is __exactly one solution that is non divergent__.
-
-
-This implies: 
-
-$$|\lambda_1| \leq \cdots \leq |\lambda_{n}| \leq 1 < |\lambda_{n+1}| \leq \cdots \leq |\lambda_{2 n}|$$
-
-
-## Example 1: 
-
-Forward looking inflation:
-
-$$\pi_t = \alpha \pi_{t+1}$$
-with $\alpha>1$: well defined.
-
-We can rewrite the system as:
-$$\alpha \pi_{t+1} - \pi_t + 0 \pi_{t-1} = \pi_{t+1} - (\frac{1}{\alpha} + 0 )\pi_t + \left(\frac{1}{\alpha} 0\right) \pi_{t-1}$$
-
-The generalized eigenvalues are $0\leq 1 < \frac{1}{\alpha}$.
-The unique solution is $\pi_t=0 \pi_{t-1}$
-
-
-## Example 2: 
-
-Debt accumulation equation by a rational agent:
-
-$$b_{t+1} - (1+\frac{1}{\beta}) b_t + \frac{1}{\beta} b_{t-1} = 0$$
-
-Two generalized eigenvalues $\lambda_1=1 < \lambda_2=\frac{1}{\beta}$
-
-The unique solution is $b_t = b_{t-1}$.
-
-- it is a *unit-root*: any initial deviation in $b_{t-1}$ has persistent effects
-
-
-## Example 3: 
-
-Productivity process: 
-$$z_t = \rho z_{t-1}$$
-with $\rho<1$: well defined.
-
-In that case there is a hidden infinite eigenvalue $\infty$ associated to $z_{t+1}$. (TODO: rewrite the polynomial)
-
-The generalized eigenvalues are $\lambda_1 = \rho \leq 1 < \lambda_2 = \infty$
-
-More generally, any variable that does not appear in $t+1$ creates one infinite generalized eigenvalue.
-
-## A criterium for well-definedness
-
-Looking again at the list of eigenvalues we can aside the infinite ones.
-
-The model is well specified iff we can sort the eigenvalues as:
-
-$$|\lambda_1| \leq \cdots \leq |\lambda_{n}| \leq 1 < |\lambda_{n+1}| \leq \cdots  |\lambda_{n+k}| \leq \underbrace{|\lambda_{n+k+1}| \cdots \leq |\lambda_{2 n}|}_{\text{infinite eigenvalues}}$$
-
-
-::: {.callout-important}
-
-### Blanchard-Kahn criterium
-
-The model satisfies the Blanchard-Kahn criterium if the number of eigenvalues greater than one, is exactly equal to the number of variables *appearing* in $t+1$.
-
-In that case the model is well-defined.
-
-:::
-
-## Computing the solution
-
-There are several classical methods to compute the solution:
-
-- qz decomposition
-    - traditionnally used in the DSGE literature since the work of Chris Sims
-- cyclic reduction
-    - new default in dynare, more adequate for big models
-- linear time iteration
-    - conceptually very simple
-
-Each method provides a solution to the Riccatti equation.
-
-## Computing the shocks
-
-Recall:
-$$F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0$$
-
-
-We have $$F^{\prime}_e(\overline{y}, 0) =  f^{\prime}_{y_{t+1}}  g^{\prime}_y  g^{\prime}_e + f^{\prime}_{y_{t}} g^{\prime}_e + f^{\prime}_{\epsilon_t} = 0 $$
-
-Now this is easy:
-
-$$g^{\prime}_e = - (f^{\prime}_{y_{t+1}}  g^{\prime}_y + f^{\prime}_{y_{t}} )^{-1}  f^{\prime}_{\epsilon_t} = 0 $$
-
-
-## The model solution
-
-The result of the model solution:
-$$y_t = g_y y_{t-1} + g_e \epsilon_t$$
-
-It is an AR1, driven by exogenous shock $\epsilon_t$.
-
-Because it is a well known structure, one can compute
-
-- impulse response functions
-- stochastic simulations
-- implied moments
-
-Also, one can easily compute the likelihood of the model given some data to perform model estimation.
-
-## Linear Time Iteration (1)
-
-Recall the system to solve:
-$$F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0$$
-
-bnut now assume the decision rules today and tomorrow are different:
-
-- today: $y_t = g(y_{t-1}, \epsilon_t) = \overline{y} + X y_{t-1} + g_y \epsilon_t$
-- tomorrow: $y_{t+1} = \tilde{g}(y_t, \epsilon_{t+1}) + \tilde{X} y_{t-1} + \tilde{g}_y \epsilon_t$
-
-Then the Ricatti equation is written:
-
-$$A \tilde{X} X + B X + C = 0$$
-
-
-## Linear Time Iteration (2)
-
-The linear time iteration algorithm consists in solving the decision rule $X$  today as a function of decision rule tomorrow $\tilde{X}$.
-
-This corresponds to the simple formula:
-
-$$X = -(A\tilde{X} + B)^{-1} C$$
-
-And the full algorithm can be described as:
-
-- choose $X_0$
-- for any $X_n$, compute $X_{n+1} = T(X_n) = -(A X_n + B)^{-1} C$
-    - repeat until convergence
-
-## Linear Time Iteration (3)
-
-It can be shown that, started from a random initial guess, the linear time-iteration algorithm always converges to the solution $X$ with the smallest modulus:
-
-$$\underbrace{|\lambda_1| \leq \cdots  \leq |\lambda_n|}_{\text{Selected eigenvalues}} \leq |\lambda_{n+1}|\cdots \leq |\lambda_{2n}|$$
-
-In other words, it finds the right solution when the model is well specified.
-
-How do you check it is well specified?
-
-- $\lambda_n$ is the biggest eigenvalue of solution $X$
-- if only we could measure $\lambda_{n+1}$...
-
-## Linear Time Iteration (4)
-
-One can show that:
-
-- $\lambda_{n}$ is the spectral radius of the simulation operator $X: \mathbb{R}^n \rightarrow \mathbb{R}^n$
-- $\frac{1}{\lambda_{n+1}}$ is the spectral radius of the derivative of the time-iteration operator $T^{\prime}: \mathbb{R}^n \times \mathbb{R}^n \rightarrow \mathbb{R}^n \times \mathbb{R}^n$
-
-If both $\rho(X)\leq 1$ and $\rho(T^{\prime})<1$, the model is well specified.
-
-This approach highlights the fact that for a model to be well defined, state dynamics and iterated expectations must be stable.
-
-## Example
-
-Take a generic first order model
-$$b_{t+1} - (\lambda_1 + \lambda_2) b_t + \lambda_1 \lambda_2 b_{t-1} = 0$$
-
-write decision rule today as $b_{t} = \lambda_{n} b_{t-1}$ and decision rule tomorrow as $b_{t+1} = \lambda_{n-1} b_t$.
-
-- What is the function $\lambda_n=f(\lambda_{n-1})$?
-- Can you prove that $\lambda_n$ always converges to a fixed point $\overline{\lambda}$?
-- Compute $f^{\prime}(\overline{\lambda})$
-- Prove that knowing $\lambda$ and $f^{\prime}(\lambda)$ is sufficient to know that the model satisfies Blanchard-Kahn conditions.
-
-
-
-##
-
-
-
-## Other features
-
-- model estimation 
-- ramsey plan
-- discretionary policy
+DSGE...
+puzzles
