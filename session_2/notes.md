@@ -31,3 +31,6 @@ Financial Integration
 
 
 Endowment: small open economy
+
+ref: http://www.sfu.ca/~kkasa/econ280_5.pdf
+
