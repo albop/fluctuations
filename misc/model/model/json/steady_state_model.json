@@ -1,0 +1,5 @@
+{"steady_state_model": [{"lhs": "y", "rhs":"ybar"}
+,{"lhs": "b", "rhs":"bbar"}
+,{"lhs": "c", "rhs":"cbar"}
+,{"lhs": "f", "rhs":"0.0"}
+]}

@@ -1,0 +1,62 @@
+Starting Dynare (version 5.2).
+Calling Dynare with arguments: none
+Starting preprocessing of the model file ...
+Found 3 equation(s).
+Evaluating expressions...done
+Computing static model derivatives (order 1).
+Computing dynamic model derivatives (order 1).
+Processing outputs ...
+done
+Preprocessing completed.
+
+
+
+
+
+Residuals of the static equations:
+
+Equation number 1 : 0 : income process
+Equation number 2 : 0 : budget equation
+Equation number 3 : 0 : euler equation
+
+
+
+EIGENVALUES:
+         Modulus             Real        Imaginary
+
+          0.8976           0.8976                0
+               1                1                0
+           1.222            1.222                0
+
+
+There are 1 eigenvalue(s) larger than 1 in modulus 
+for 1 forward-looking variable(s)
+
+The rank condition is verified.
+
+warning: Some of the parameters have no value (chi) when using stoch_simul. If these parameters are not initialized in a steadystate file or a steady_state_model-block, Dynare may not be able to solve the model. Note that simul, perfect_foresight_setup, and perfect_foresight_solver do not automatically call the steady state file.
+
+MODEL SUMMARY
+
+  Number of variables:         3
+  Number of stochastic shocks: 1
+  Number of state variables:   2
+  Number of jumpers:           1
+  Number of static variables:  0
+
+
+MATRIX OF COVARIANCE OF EXOGENOUS SHOCKS
+Variables         e_y
+e_y          0.000100
+
+POLICY AND TRANSITION FUNCTIONS
+                                   y               c               b
+Constant                    1.000000        1.000000               0
+y(-1)                       1.000000        0.753079        0.256798
+b(-1)                              0        0.136885        0.897640
+e_y                         1.000000        0.753079        0.256798
+
+All endogenous are constant or non stationary, not displaying correlations and auto-correlations
+
+Total computing time : 0h00m01s
+Note: warning(s) encountered in MATLAB/Octave code

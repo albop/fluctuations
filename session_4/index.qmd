@@ -1,0 +1,288 @@
+---
+title: "Climate model"
+format:
+    revealjs:
+        navigation-mode: grid
+        layout: wide
+        toc: true
+        toc-depth: 1
+        toc-title: Plan
+---
+
+## The DICE Model
+
+A family of models
+
+- 1992
+- ...
+- 2018: Nobel lecture
+  - video
+
+Many versions: DICE/RICE
+
+## IAM
+
+Integrated Assessment Models
+
+- TODO definition
+
+Two categories:
+
+- policy optimization
+- policy evaluation
+
+Optimization can mean two things
+
+- behaviour of competitive markets
+- normative point of view
+
+## Preferences
+
+Importance of consumption depends on size of population
+Relative importance of different generations :
+
+- social time preference (generational discounting)
+- EIS: consuption elasticity
+
+Set based on "observed outcomes"
+
+Consumption is "generalized consumption:"
+
+- traditional market goods
+- leisure, health, environmental services...
+
+## Preferences (formalization)
+
+$$W = \sum_{t=1}^{\infty} \Psi_t U(c_t, L_t) $$
+
+where $t=2020, 2025, ....$, $R_t=\frac{1}{(1+\rho)^t}$ with $\rho=0.01$ per year
+
+and $$U(c_t,L_t) = L_t c_t^{1-\varphi}{1-\varphi}$$ with $\alpha=0.5$
+
+Nordhaus: it is a "positive" mode: "outcome of market and policy factors as they currently exist"
+
+
+## Economic Variables (population growth)
+
+Poplulation is exogenous:
+
+$$L_t = L_{t-1} (1+g_{L,t})$$
+
+avec $$g_{L,t} = \frac{g_{L,t-1}}{1+\delta_L}$$
+
+Growth rate decreases over time.
+With initial population in 2010, from data
+
+- $g_L(1015) = 13.4$
+- approached 10.5 billions in 2100
+
+## Economic Variables (tfp growth)
+
+Poplulation is exogenous:
+
+$$A_t = A_{t-1} (1+g_{A,t})$$
+
+avec $$g_{A,t} = \frac{g_{A,t-1}}{1+\delta_A}$$
+
+Growth rate decreases over time.
+With initial population in 2010, from data
+
+- $g_A(2015) = 7.9\%$
+- $\delta_A=0.6\%$
+- growth rate: 1.9 from 2010 to 2100, then 0.9 from 2100 to 2200
+
+## Carbon Saving Technological Change
+
+Fuel reserves: 6000 billon tons of carbon content
+Not binding in the base case
+
+## Total Output
+
+$$Q_t = (1-\Lambda(t))A_t K_t^{\gamma}L_t^{1-\gamma}(1-\Omega_t)$$
+
+- $Q_t$: output net of damages and abatement
+- $A_t$: total factor productivity
+- $K_t$: capital stock and services
+- $\Omega_t$: climate damage
+- $\Lambda_t$: abatement costs
+
+Ttranslation "abatement costs"
+
+## The Damage Function
+
+$$\Omega_t = \psi_1 T_{AT,t} + \psi_1 T_{AT_t}^2$$
+
+$$\Omega_t = 0 T_{AT,t} + 0.003467 T_{AT_t}^2$$
+
+where $T_{AT,t}$ is the world temperature.
+
+Assumption: temperature is alone a good measure of damage.
+
+graph
+
+
+## Abatement cost
+
+$$\Lambda_t = \theta_{1,t} \mu_t^{\theta_2}$$
+
+- $\mu_t$: emissions reduction rates
+
+Total abatement cost is proportional to output
+
+- power function of $\mu_t$: convex ($\theta_2<1$)
+
+## Backstop technology
+
+technology that replaces all fossil fuels
+
+- remove carbon from atmosphere
+- zero carbon technolgy
+- cost initially high decreasing over time
+  - carbon saving technological change
+
+Calibration: 344 per ton CO2 for 100$ removal
+- cost decreaases at 0.5% per year
+
+$\theta_{1,t}$ calibrated so as to replicate the backstop price in every year.
+
+## Accounting equations
+
+$$Q_t = C_t + I_t$$
+$$c = \frac{C_t}{L_t}$$
+
+$$K_t = I_t - \delta_K K_{t-1}$$
+
+## Projection of CO2 emissions
+
+TODO
+
+## Control Variable
+
+- older versions: emissions control rate
+- new verions: carbon tax on carbon price
+
+
+carbon price: price equals marginal cost of emissions
+- from abatement equation, substituting output equations (exercise?)
+
+## CO2 Emissions:
+
+Industrial CO2 emissions:
+
+$$E_{ind,t} = \sigma_t \left[ 1-\mu_t \right] A_t K_t^{\gamma} L_t^{1-\gamma}$$
+
+- $\sigma_t$: carbon intensity, exogenous
+
+$$\sigma_t = \sigma_{t-1} \left[ 1 + g_{\sigma,t}\right]$$
+
+where $g_{\sigma,t} = \frac{g_{\sigma,t-1}}{1+\delta_{\sigma}}$
+
+In the current
+specification, σ(2010) is set to equal the carbon intensity in 2010, 0.549 tons of CO2
+per $1000 of GDP; gσ(2015) = -1.0% per year; and δσ = -0.1% per five years. This
+specification leads to rate of change of carbon intensity (with no climate change
+policies) of -0.95%per year from 2010 to 2100 and -0.87% per year from 2100 to
+2200.
+
+
+## Constraint on Carbon Fuel
+
+$$CCum \geq \sum_{t=1}^{\infty} E_{ind,t}$$
+
+- CCUm=6000 tons of carbon content
+
+## Geophysical sectors:
+
+link economy -> climate change
+
+carbon cycle, radiating forcing equation climate chagne claimate damage
+
+all endogenous
+
+total emissions:
+
+- industrial and land-use emissions
+ 
+$$E_t= E_{ind,t} + E_{land,t}$$
+
+Carbon from land-use exogenous and calibrated from IPCC
+
+## Carbon Cycle
+
+From the FAIR model (Finite Amplitude Impulsse Response model by Millar et al. 2017)
+
+Model interactions of carbon "reservoirs" $R^i_t$:
+
+![](assets/carbon_cycle.png)
+
+## Climate Equations
+
+![](assets/climate_forcing.png)
+
+
+<!-- ## Carbon cycle
+
+Three reservoirs:
+
+- $M_{AT,t}$: atmosphere
+- $M_{UP,t}$: upper oceans and atmosphere
+- $M_{LO,t}$: deep oceans
+
+TODO: system -->
+
+## Warming from radiative forcing
+
+
+CHECK
+
+$$F(t)   {log2 [ MAT (t) / MAT (1750)]}  FEX (t)$$
+$$17$$
+$$18$$
+
+
+## Positive and normative models
+
+Is the model positive or normative?
+
+- ok, for most projection models
+- for optimization models
+  - it depends
+
+Stern: normative
+
+The ambiguity arises particularly because many models use optimization as a technique for calibrating market outcomes in a positive approach. This is the interpretation of “market mechanisms as maximization or minimization devices.” 
+
+Explain stuff about ramsey planner
+
+## Results
+
+Scenarios:
+
+current policies extended indefinitely
+- 2010 policies: 1$ per ton of CO2 emissions reductions
+
+optimal: 
+- climate change policies maximize eocnomic welfare
+  - full participation
+  - no constraint
+temparture limit
+low discount rate
+low time prefrence with calibrated interest rate ()
+
+Paris accord
+- high income countries implement emissions reductions
+
+## 1.5 degrees not feasible
+
+
+## The social cost of carbon
+
+
+Social Cost of Carbon:
+
+$$SCC_t = \frac{\partial W}{\partial E_t}  / \frac{\partial W}{\partial C_t} = \frac{\partial C_t}{\partial E_t}$$
+
+Show estimates
+
+## Solution Method
+
