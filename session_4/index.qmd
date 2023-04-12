@@ -9,22 +9,38 @@ format:
         toc-title: Plan
 ---
 
-## The DICE Model
 
-A family of models
+# Estimating the price of carbon
 
-- 1992
-- ...
-- 2018: Nobel lecture
-  - video
+## The DICE (family of) model(s)
 
-Many versions: DICE/RICE
+Nordhaus was rewarded for his work on the DICE model
+
+- DICE: Dynamic Integrated model of Climate and the Economy
+- several variants (1992, 2016, 2018, 2023...)
+  - all available [online](https://williamnordhaus.com/dicerice-models)
+
+## Integrated Assessment Models
+
+Cost-Benefit Analysis
+
+- cost: reduced economic activity
+- benefit: damage avoided
+
+. . .
+
+Result is a so-called *Integrated Assessment Model*
+
+- multidisciplinary in essence
+- economic models can be reused for the modelisation of costs
+- results from earth scientists are incorporated to measure damage
+
+
+
 
 ## IAM
 
-Integrated Assessment Models
-
-- TODO definition
+TODO
 
 Two categories:
 
@@ -35,6 +51,30 @@ Optimization can mean two things
 
 - behaviour of competitive markets
 - normative point of view
+
+## Damages
+
+Damage function $D(T)$ is estimated with engineers/earth scientists
+
+It evaluates the effect of global warming on many systems:
+
+- natural quantitites
+    - ex: water temperature, probability of storms...
+- production functions
+    - ex: crops become less productive
+
+. . .
+
+It differentiates two states for a given system
+
+- __managed__
+    ex: a dam on a river, air conditioning, the job market in the US
+- __unmanaged__
+    ex: a flood, storm, emergency migrations
+
+*Tipping points* -> sudden/irreversible damage
+
+- makes systems effectively unmanageable
 
 ## Preferences
 
@@ -51,7 +91,71 @@ Consumption is "generalized consumption:"
 - traditional market goods
 - leisure, health, environmental services...
 
+## The Damage Functions
+
+
+::: columns
+
+:::: column
+
+Results from damage estimation exercises:
+
+- impacts are nonlinear and cumulative
+- early studies:  1 or 2 degrees innocuous
+- more recent ones: (ex 2018 IPCC report on 1.5)
+    - even 2 degrees highly disruptive
+
+In the DICE model damages are market and non-market
+
+- converted in consumption equivalent
+- 2% of __permanent consumption__ at 3 degrees
+- 8% at 6
+
+
+::::
+
+:::: column
+
+![Meta-Analysis](assets/howard_and_sterner.png)
+
+Howard and Sterner: meta analysis
+
+- damages 3 times higher
+::::
+
+:::
+
+
+## The DICE Model
+
+From Nordhaus Nobel lecture:
+
+$$\max_{c_t} W = \max _{c_t} \int_0^{\infty} U[c(t)] e^{-\rho t} dt$$
+$$\text{s.t.}
+c(t) = M(y(t), z(t); α, ε(t))$$
+
+::: {.r-stack}
+
+:::: {.fragment .current-visible}
+
+- maximize welfare made of 
+    - utility $U()$ of world consumption $c(t)$ overtime 
+    - with a time discount $\rho$
+- subject to many complicated constraints
+    - about 20 independent equations
+
+::::
+:::: {.fragment .current-visible}
+
+- this is known as a __Ramsey problem__, a variant of neoclassical growth problem
+    - there is a social planner maximizing welfare
+    - can also be interpreted as a *positive* modeling of a market without frictions
+::::
+:::
+
 ## Preferences (formalization)
+
+Objective:
 
 $$W = \sum_{t=1}^{\infty} \Psi_t U(c_t, L_t) $$
 
@@ -147,9 +251,11 @@ $\theta_{1,t}$ calibrated so as to replicate the backstop price in every year.
 
 ## Accounting equations
 
+- saving-investment
 $$Q_t = C_t + I_t$$
-$$c = \frac{C_t}{L_t}$$
-
+- consumptino per capita
+$$c_t = \frac{C_t}{L_t}$$
+- law of motion for capital
 $$K_t = I_t - \delta_K K_{t-1}$$
 
 ## Projection of CO2 emissions
