@@ -1,0 +1,69 @@
+Starting Dynare (version 5.2).
+Calling Dynare with arguments: none
+Starting preprocessing of the model file ...
+Found 5 equation(s).
+Evaluating expressions...done
+Computing static model derivatives (order 1).
+Computing dynamic model derivatives (order 1).
+Processing outputs ...
+done
+Preprocessing completed.
+
+
+
+
+
+Residuals of the static equations:
+
+Equation number 1 : -0.9 : k
+Equation number 2 : 0 : y
+Equation number 3 : -0.15833 : mrk
+Equation number 4 : 0 : 4
+Equation number 5 : -1 : c
+
+
+
+STEADY-STATE RESULTS:
+
+k   		 2.92082
+c   		 1.08719
+i   		 0.292082
+y   		 1.37928
+mrk 		 0.141667
+
+
+
+
+Residuals of the static equations:
+
+Equation number 1 : 0 : k
+Equation number 2 : -0.14506 : y
+Equation number 3 : 0 : mrk
+Equation number 4 : 0 : 4
+Equation number 5 : 0 : c
+
+
+
+STEADY-STATE RESULTS:
+
+k   		 2.92082
+c   		 1.23225
+i   		 0.292082
+y   		 1.52434
+mrk 		 0.141667
+
+--------------------------------------------------------
+MODEL SIMULATION:
+
+Iter: 1,	 err. = 0.14506,	 time = 0.0473633
+Iter: 2,	 err. = 0.0078997,	 time = 0.0441132
+Iter: 3,	 err. = 1.54931e-05,	 time = 0.0441055
+Iter: 4,	 err. = 5.68143e-11,	 time = 0.0441284
+
+Total time of simulation: 0.184174.
+--------------------------------------------------------
+
+Perfect foresight solution found.
+
+Total computing time : 0h00m02s
+Note: warning(s) encountered in MATLAB/Octave code

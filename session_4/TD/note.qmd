@@ -1,15 +1,52 @@
 ---
-title: "TD: climate change"
-format:
-    revealjs:
-        navigation-mode: grid
-        layout: wide
-        toc: true
-        toc-depth: 1
-        toc-title: Plan
+title: "Climate Model and Perfect Foresight Simulation "
+format: pdf
 ---
 
-Neoclassical growth model
+We start with the neoclassical growth model (using Dynare timing)
 
-$$k_t = (1-\delta) k_{t-1} + i_{t-1}$$
+- capital accumlation: $$k_t = (1-\delta) k_{t-1} + i_t$$
+- budget constraint: $$c_t + i_t = y_t$$
+- production: $$y_t = exp(a_t)k_{t-1}^{\alpha}$$
+- marginal return on capital $${mr}^k_t = \frac{y_t}{k_t}$$
+- optimality condition for consumption: $$\beta E_t \left[ \frac{U^{\prime}(c_t+1)}{U^{\prime}(c_t)} (1-\delta + {mr}^k_t \right]$$
+
+Our ultimate goal consists in extending this model to allow for a (*very*) reduced form of climate change, and understand the qualitative implications. [^IAM]
+
+Productivity shock $a_t$ is exogenous.
+
+[^IAM]: in doing so, we follow broadly the approach from Integrated Assessment Models as the DICE model.
+
+## Perfect Foresight Simulation with Dynare
+
+In the previous sessions we have used Dynare to compute stochastic around a given steady-state. The shocks were random variables.
+
+This time, we will use the perfect foresight capabilities of Dynare: a deterministic simulation is computed between an initial and a final steady-state. As for the shocks, they evolve in a deterministic way and determine both the initial and the final steady-states.
+
+
+1. __Modfify the initial steady-state so that the resid function returns zeros.__
+
+2. __Uncomment the endval block and the resid function afterwards. This block sets the values of exogenous shock `a` in the final steady-state. Change the content of endval so that final steady-state is satisfied.__
+
+
+
+3. __Uncomment the two perfect foresight instructions at the end and run the modfile. Use rplot to visualize the transition. Interpretation? What it is the value of `a` during the transition ?.__
+
+The simulation lasts for 50 periods. `a` jumps from 0 to 0.1 in period 1. During the transition, capital level is unchanged as the final and the initial steady-states levels are the same.
+
+4 __Add the following block before the endval command:__
+
+```
+shocks;
+var a;
+periods 1:10;
+values 0.0;
+end;
+```
+
+__This command specifies that productivity shocks remains at zero during the first few periods. Simulate and comment the new transition.__
+
+This time, we observe that in the first few periods, since productivity is expected to rise in the future (perfect foresight), current capital is comparatively less valueable. Agents consume it in order to smooth consumption. Capital and investment decrease over time while consumption has a growing path.
+
+Eventually the economy converges to the same steady-state.
 
