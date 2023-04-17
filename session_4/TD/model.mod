@@ -9,8 +9,8 @@ gamma = 4;
 
 model;
 k = k(-1)*(1-delta) + i;
-y = exp(a)*k^alpha;
-mrk = alpha*k^(alpha-1);
+y = exp(a)*k(-1)^alpha;
+mrk = alpha*k(-1)^(alpha-1);
 beta*(c(1)/c)^(-gamma)*(1-delta+mrk(1)) - 1;
 c = y-i;
 end;
@@ -26,21 +26,11 @@ end;
 
 resid;
 
-steady;
+//endval;
+//a = 0.1;
+//end;
 
-shocks;
-var a;
-periods 1:10;
-values 0.0;
-end;
-
-endval;
-a = 0.1;
-end;
-
-resid;
-
-steady;
+//resid;
 
 
 perfect_foresight_setup(periods=200);

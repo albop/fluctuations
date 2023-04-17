@@ -1,7 +1,7 @@
 Starting Dynare (version 5.2).
 Calling Dynare with arguments: none
 Starting preprocessing of the model file ...
-Found 15 equation(s).
+Found 11 equation(s).
 Evaluating expressions...done
 Computing static model derivatives (order 1).
 Computing dynamic model derivatives (order 1).
@@ -9,75 +9,86 @@ Processing outputs ...
 done
 Preprocessing completed.
 
+Randomize initial guess...
+
+STEADY-STATE RESULTS:
+
+k     		 3.0814
+k_g   		 2.77604
+k_e   		 0.305363
+e     		 0.70056
+p_e   		 0.205835
+c     		 1.00277
+i     		 0.30814
+y     		 1.31091
+mrk   		 0.141667
+omega 		 0
+T     		 7.0056
 
 
 
 
 Residuals of the static equations:
 
-Equation number 1 : 0 : c
-Equation number 2 : 0 : k
-Equation number 3 : 0 : 3
-Equation number 4 : 0 : y
-Equation number 5 : 0 : e
-Equation number 6 : 0 : e_f
-Equation number 7 : 0 : e_r
-Equation number 8 : 0.45465 : p_e
-Equation number 9 : 0 : p_r
-Equation number 10 : -0.8778 : 10
-Equation number 11 : -0.8778 : 11
-Equation number 12 : 0 : 12
-Equation number 13 : -0.0098821 : rk
-Equation number 14 : 0 : omega
-Equation number 15 : -1.132 : T
+Equation number 1 : 0 : k
+Equation number 2 : 0 : y
+Equation number 3 : 3.4787e-07 : e
+Equation number 4 : 0 : 4
+Equation number 5 : 0 : p_e
+Equation number 6 : 0 : mrk
+Equation number 7 : -6.2555e-07 : 7
+Equation number 8 : 0 : 8
+Equation number 9 : 0 : c
+Equation number 10 : 0 : omega
+Equation number 11 : 0 : T
 
 
 
 STEADY-STATE RESULTS:
 
-k     		 3.1698
-c     		 0.859158
-i     		 0.31698
-y     		 1.17614
-k_e   		 0.271293
-k_f   		 2.49065
-k_r   		 0.407864
-omega 		 0.125892
-p_e   		 0.216765
-p_r   		 0.288365
-e     		 1.25892
-e_f   		 0.591012
-e_r   		 0.667913
-T     		 2.25892
-rk    		 1.04167
-
-STEADY-STATE RESULTS:
-
-k     		 3.1698
-c     		 0.859158
-i     		 0.31698
-y     		 1.17614
-k_e   		 0.271293
-k_f   		 2.49065
-k_r   		 0.407864
-omega 		 0.125892
-p_e   		 0.216765
-p_r   		 0.288365
-e     		 1.25892
-e_f   		 0.591012
-e_r   		 0.667913
-T     		 2.25892
-rk    		 1.04167
+k     		 2.77447
+k_g   		 2.49953
+k_e   		 0.274946
+e     		 0.678851
+p_e   		 0.191259
+c     		 0.902885
+i     		 0.277447
+y     		 1.18033
+mrk   		 0.141667
+omega 		 0.0678851
+T     		 6.78851
 
 --------------------------------------------------------
 MODEL SIMULATION:
 
-Iter: 1,	 err. = 1.14978e-09,	 time = 0.107216
+Iter: 1,	 err. = 0.276236,	 time = 0.210091
+warning: matrix singular to machine precision
+warning: called from
+    sim1>lin_solve at line 193 column 3
+    sim1 at line 126 column 12
+    perfect_foresight_solver_core at line 99 column 68
+    perfect_foresight_solver at line 63 column 5
+    driver at line 247 column 1
+    dynare at line 289 column 5
 
-Total time of simulation: 0.108391.
+WARNING : Failed to find a solution to the linear system.
+Iter: 2,	 err. = 0.00126455,	 time = 0.243393
+warning: matrix singular to machine precision
+warning: called from
+    sim1>lin_solve at line 193 column 3
+    sim1 at line 126 column 12
+    perfect_foresight_solver_core at line 99 column 68
+    perfect_foresight_solver at line 63 column 5
+    driver at line 247 column 1
+    dynare at line 289 column 5
+
+WARNING : Failed to find a solution to the linear system.
+Iter: 3,	 err. = 5.87385e-07,	 time = 0.196274
+
+Total time of simulation: 0.676308.
 --------------------------------------------------------
 
 Perfect foresight solution found.
 
-Total computing time : 0h00m03s
+Total computing time : 0h00m01s
 Note: warning(s) encountered in MATLAB/Octave code

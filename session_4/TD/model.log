@@ -55,15 +55,15 @@ mrk 		 0.141667
 --------------------------------------------------------
 MODEL SIMULATION:
 
-Iter: 1,	 err. = 0.14506,	 time = 0.0473633
-Iter: 2,	 err. = 0.0078997,	 time = 0.0441132
-Iter: 3,	 err. = 1.54931e-05,	 time = 0.0441055
-Iter: 4,	 err. = 5.68143e-11,	 time = 0.0441284
+Iter: 1,	 err. = 0.14506,	 time = 0.104477
+Iter: 2,	 err. = 0.0078997,	 time = 0.0869598
+Iter: 3,	 err. = 1.54931e-05,	 time = 0.0882034
+Iter: 4,	 err. = 5.68143e-11,	 time = 0.0893478
 
-Total time of simulation: 0.184174.
+Total time of simulation: 0.381348.
 --------------------------------------------------------
 
 Perfect foresight solution found.
 
-Total computing time : 0h00m02s
+Total computing time : 0h00m01s
 Note: warning(s) encountered in MATLAB/Octave code

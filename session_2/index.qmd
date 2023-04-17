@@ -1,5 +1,5 @@
 ---
-title: "Small Open Economy Extension"
+title: "Small Open Economy Extension (IRBC)"
 format:
     revealjs:
         navigation-mode: grid
@@ -9,85 +9,257 @@ format:
         toc-title: Plan
 ---
 
+# Introduction and Basic Facts
 
 ## Why a small open economy?
 
 
-what are the classical reasons to open:
-    - financial integration
-      - smooth shock
-    - trade integration
+What are the classical reasons to open economy to trade
 
-what is financial integration:
+::: incremental
+
+- trade integration 
+    - taste for variety
+    - comparative advantage
+- financial integration
+    - smooth shock / insurance
+
+:::
+
+<!-- There are many 
     complete financial market? what does it mean
-    riskfree bond
+    riskfree bond -->
+
+## From RBC to IRBC
+
+After the success of RBC models to match business cycles it didn't take long before the same methodology was applied to International Business Cycles
+
+- Most famous: Backus, Kehoe, Kydland (1992) (freshwater economists)
+
+Very successful methodology:
+- facts at odd with theoretical predictions have been called "puzzles"
 
 
+## Moments
 
-## Empirical Facts
+![Business Cycles](assets/moments.png)
 
-puzzles...
-
-
-## Deterministic Small Open Economy
+From Kehoe,Kydland (1995)
 
 
-model setup
+## Comovements
+
+![](assets/comovements.png)
+
+## Stylized Facts
+
+::: incremental
+
+- Domestically:
+    - output more variable than consumption
+    - output highly correlated
+    - productivity strongly procyclical
+    - trade balance strongly countercyclcal
+    - positive comovements in output
+- Internationally:
+    - smaller comovements in consumption
+        - Backus-Kehoe-Kydland puzzle
+
+::::
+
+# Modeling a Small Open Econmomy
+
+## Endowment model
+
+Take an endowment economy: $(y_t)_t$ is exogenously given.
+
+$$\max_{c_t} \sum_{t=0}^{\infty} \beta^t u(c_t)$$
+
+s.t.
+
+$$c_t+a_{t+1} \leq y_t + (1+r) a_t$$
+
+Country takes as given world interest rate $r$.
+
+- a small open economy doesn't affect world prices
 
 
-world interest rate
+## Endowment model (2)
 
-derive solution
+We solve this problem with the terminal conditions:
 
-trade balance: ${TB}_t=y_t-c_t$
-current account: ${CA}_t = TB_t + r a_t$
+- $a_0$ given
+- $\lim_{T\rightarrow\infty} \frac{a_{T+1}}{(1+r)^T}\geq0$ 
 
-assume $\beta(1+r) = 1$
+    - *no-ponzi* condition
+
+## Endowment Model (3)
+
+First order conditions:
+$$\begin{align} u^{\prime}(c_t)=\lambda_t \\ \lambda_t = \beta (1+r) \lambda_{t+1}\end{align}$$
+
+Under the technical assumption $\beta (1+r)=1$ we get:
+
+$$c_0 = \frac{r}{1+r}\left\{ (1+r) a_0 + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}\right\}$$
+
+Waht do we recognize?
+
+. . .
+
+- problem isomorphic to consumption-savings decisions
+- consumption is determined by permanent income
+
+## Intertemporal approach to the current account
+
+Observe the formula:
+$$c_0 = \frac{r}{1+r}\left\{ (1+r) a_0 + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}\right\}$$
+
+What does it tell us about the current account?
+
+. . .
+
+- trade balance responds positively to temporary shock in $y_t$
+- and to news about future income shocks:
+    - This is the *intertemporal approach* to the current account
 
 
-Consumption level: 
+## Unit root
 
-$c_0 = ...permanent income$
+Still with the same formula:
+$$c_0 = \frac{r}{1+r}\left\{ (1+r) a_0 + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}\right\}$$
 
+What is the effect of an increase in $a_0$?
 
--> intertemporal approach to the current account
-    - procyclical trade balance
+- consumption rises permanently
+- there is a unit root
 
--> what is the steady-state?
+## Exercise
 
-## Stationarize the distribution
+From the first order conditions 
+$$\begin{align} u^{\prime}(c_t)=\lambda_t \\ \lambda_t = \beta (1+r) \lambda_{t+1}\end{align}$$
 
-## Add back capital
-
--> simple but trivial investment dynamis
-
-How to fix volatility of investment?
-
-...
-
--> solution add adjustment costs
-
-model pas super: un parametre un momen
-
-## Add non tradables
-
-countercyclical trade balance
+assuming $u(c_t) = \log (c_t)$, can you get the equation for the law of motion of $a_t$  and show the presence of a unit root?
 
 
-# A quantitative SOE moel
+## Adding capital
 
- Schmitt
-Grohe and Uribe JIE (2004) 
+We add capital and production to our endowment economy:
+$$y_t = z_t k_t^\alpha$$
 
-## Result:
+The aggregate resource constraint:
 
-Schmitt-Grohe & Uribe
+$$a_{t+1} + c_t + i_t = (1+r) a_t + z_t$$
 
-# Conclusion
+. . .
 
-## Towards IRBC models
+- optimality conditions:
+    $$\lambda_t = \beta \lambda_{t+1} (1+r)$$
+    $$\lambda_t = \beta \lambda_{t+1}\left[ (1-\delta) + z_{t+1} f^{\prime}(k_{t+1}) \right]$$
 
-## What as small open economy problems?
 
-DSGE...
-puzzles
+## Adding capital: first order conditions
+
+
+The combination of these two constraints yields the simple condition:
+$$k_{t+1} = \left( \frac{r+\delta}{a z_{t+1}}\right)^{\frac{1}{\alpha-1}}$$
+
+and investment $$i_t = \left( \frac{r+\delta}{a z_{t+1}}\right)^{\frac{1}{\alpha-1}}- (1-\delta)\left( \frac{r+\delta}{a z_{t}}\right)^{\frac{1}{\alpha-1}}$$
+
+
+Since investment comoves one to one with productivity shock (conditionnally on $z_{t-1}$), it is way to volatile.
+
+<!-- 
+## The elusive gains of financial integration
+
+Side note:
+
+Cf: Gourinchas and Jeanne *The elusive gains from financial integration.
+The immediate adjustment of capital provides an upper bound on the gains from financial integration.
+ -->
+
+## Add friction to the investment
+
+
+A possible solution: change the resource constraint such that adjusting capital is costly
+
+$$a_{t+1} + c_t + i_t + \frac{\omega}{2}\frac{(i_t-\delta k^{\star})}{k_t} = (1+r)a_t + z f(k_t)$$
+
+$$k_{t+1} = (1-\delta) k_t + i_t$$
+
+where $\omega$ is an adjustment friction. Typicall, $\omega$ is chosen so that the model replicates $\frac{Var(i_t)}{Var{y_t}}$
+
+
+## How to make the distribution stationary?
+
+Unit root :
+$$a_t = a_{t-1} + ... \text{other variables in t-1} + \text{shocks in t}$$
+
+Problem:
+
+- there isn't a unique deterministic steady-state
+- the ergodic distribution of the model variables would not be defined.
+
+This raises practical issues (notably for estimation) for the *linear* model.
+
+
+## How to get rid of the unit root?
+
+General idea: introduce a force that will pull the level of foreign assets towards an equilibrium
+
+Schmitt Grohe and Uribe (2004) consider many options:
+
+- debt-elastic interest rate:
+    $$1+r = 1+r^{\star} + \pi(a_d)$$
+    - with $\pi(0)=0$ and $\pi^{\prime}(0)>0$
+    - $\pi$ can be understood as a risk premium on rising debt
+- endogenous time-discount (aka Usawa preferences) (TODO: actual version has labour)
+    $$\beta(c_t) = (1+c_t)^{-\chi}$$
+- costs of adjustment for international portfolio
+
+SGU show that the choice of the stationarization device has little effect
+
+# A benchmark Small Open Economy Model
+
+## A benchmark Small Open Economy Model
+
+*Closing Small Economy Models*, Schmitt Grohe and Uribe (2003), JIE
+
+- small open economy model with production, consumption-leisure tradeoff and capital adjustment costs
+- RBC+open+adj costs
+
+## The model
+
+$$\max_{c_t} \sum_{t=0}^{\infty} \beta^t u(c_t)$$
+
+s.t.
+
+$$c_t + k_{t+1} + a_{t+1} = y_t + g_t - \frac{\omega}{2}(k_{t+1}-k_t)^2 +(1-\delta) k_t + (1+r^{\star}+\pi(a_t))a_t$$
+$$y_t = f(k_t, n_t, z_t)$$
+
+$$z_{t+1} = \rho z_t + \epsilon_{t+1}$$
+
+and $u(c, n) = \frac{1}{1-\sigma}\left(c^{\psi}(1-n)^(1-\psi))\right)^{1-\sigma}$
+
+## Calibration
+
+
+| Parameters | σ | ψ    |    α |     ω |    r |   δ | ρ    | σ²      | $A^{\star}$ | χ        |
+|------------|---|------|------|-------|------|-----|------|---------|-------------|----------|
+| Values     | 2 | 1.45 | 0.32 | 0.028 | 0.04 | 0.1 | 0.42 | 0.0129  | -0.7442     | 0.000742 |
+
+## Results (1/2)
+
+![](assets/irf.png)
+
+## Results (2/2)
+
+![](assets/sgu_moments.png)
+
+## Conclusions
+
+- The model matches unconditional correlations fairly well
+    - The stationarization device has little effect on the moments
+- Unconditional correlations are not that great
+    - a limitation of the moment matching method?
+- Correlation of consumption with output is too high
+    - what part of the model would you change?

@@ -1,17 +1,19 @@
 ---
 title: "Climate Model and Perfect Foresight Simulation "
-format: pdf
+format: latex
 ---
 
-We start with the neoclassical growth model (using Dynare timing)
+Our ultimate goal consists in extending the neoclassical model to allow for a (*very*) reduced form of climate change, and understand the qualitative implications. [^IAM]
+
+Using Dynare timing conventions, our initial model corresponds to the following equations (in `model_1.mod`):
 
 - capital accumlation: $$k_t = (1-\delta) k_{t-1} + i_t$$
 - budget constraint: $$c_t + i_t = y_t$$
 - production: $$y_t = exp(a_t)k_{t-1}^{\alpha}$$
-- marginal return on capital $${mr}^k_t = \frac{y_t}{k_t}$$
-- optimality condition for consumption: $$\beta E_t \left[ \frac{U^{\prime}(c_t+1)}{U^{\prime}(c_t)} (1-\delta + {mr}^k_t \right]$$
+- marginal return on capital $${mr}^k_t = \frac{y_t}{k_{t-1}}$$
+- optimality condition for consumption: $$\beta E_t \left[ \frac{U^{\prime}(c_{t+1})}{U^{\prime}(c_t)} (1-\delta + {mr}^k_t  )\right] = 1$$
 
-Our ultimate goal consists in extending this model to allow for a (*very*) reduced form of climate change, and understand the qualitative implications. [^IAM]
+
 
 Productivity shock $a_t$ is exogenous.
 
@@ -19,12 +21,12 @@ Productivity shock $a_t$ is exogenous.
 
 ## Perfect Foresight Simulation with Dynare
 
-In the previous sessions we have used Dynare to compute stochastic around a given steady-state. The shocks were random variables.
+In the previous sessions we have used Dynare to compute stochastic around a given steady-state. The shocks were i.i.d random variables.
 
-This time, we will use the perfect foresight capabilities of Dynare: a deterministic simulation is computed between an initial and a final steady-state. As for the shocks, they evolve in a deterministic way and determine both the initial and the final steady-states.
+This time, we will use the perfect foresight capabilities of Dynare to compute a deterministic simulation between an initial and a final steady-state. The driving exogenous process will be specified deterministically and determine both the initial and the final steady-states.
 
 
-1. __Modfify the initial steady-state so that the resid function returns zeros.__
+1. __Check the `model_1.mod` file. Modfify the initial steady-state so that the resid function returns zeros.__
 
 2. __Uncomment the endval block and the resid function afterwards. This block sets the values of exogenous shock `a` in the final steady-state. Change the content of endval so that final steady-state is satisfied.__
 
@@ -32,9 +34,9 @@ This time, we will use the perfect foresight capabilities of Dynare: a determini
 
 3. __Uncomment the two perfect foresight instructions at the end and run the modfile. Use rplot to visualize the transition. Interpretation? What it is the value of `a` during the transition ?.__
 
-The simulation lasts for 50 periods. `a` jumps from 0 to 0.1 in period 1. During the transition, capital level is unchanged as the final and the initial steady-states levels are the same.
+*The simulation lasts for 50 periods. `a` jumps from 0 to 0.1 in period 1. During the transition, capital level is unchanged as the final and the initial steady-states levels are the same.*
 
-4 __Add the following block before the endval command:__
+4. __Add the following block before the endval command:__
 
 ```
 shocks;
@@ -44,9 +46,122 @@ values 0.0;
 end;
 ```
 
-__This command specifies that productivity shocks remains at zero during the first few periods. Simulate and comment the new transition.__
+5. __This command specifies that productivity shocks remains at zero during the first few periods, before jumping to its final value. Simulate, plot and comment on the new transition.__
 
-This time, we observe that in the first few periods, since productivity is expected to rise in the future (perfect foresight), current capital is comparatively less valueable. Agents consume it in order to smooth consumption. Capital and investment decrease over time while consumption has a growing path.
+*This time, we observe that in the first few periods, since productivity is expected to rise in the future (perfect foresight), current capital is comparatively less valueable. Agents consume it in order to smooth consumption. Capital and investment decrease over time while consumption has a growing path.*
 
-Eventually the economy converges to the same steady-state.
+*Eventually the economy converges to the same steady-state as before.*
+
+## Adding an energy sector.
+
+We now modify the model so as to add a climate externality. To that intent we create a new modfile `model_2.mod`
+
+We change the production function so as to add energy as a second input:
+
+$$y_t = exp(a_t) k_{g,t-1}^{\alpha}e_t^{\alpha_e}$$
+
+with $\alpha_e=0.1$ and where $k_{g,t}$ is the capital used to produce final (consumption) goods.[^extraction]
+
+[^extraction]: Here the overall focus is on climate damages from energy consumption, which is why we don't add fuel stocks to the model.
+
+Energy itself is produced on competitive markets using capital $k_{e,t}$ according to production function:
+
+$$e_{t} = k_{e,t-1}^{\alpha}$$
+
+6. __Which equation defines the market price of energy?__
+
+The price of energy is equal to its marginal productivity:
+$$p_e = \alpha_e y_t / e_t$$
+
+
+
+7. __The resource constraint for capital is $k_t = k_{e,t} + k_{g,t}$. What is now the marginal return of capital in both sectors ? What determines optimal allocation of capital between the consumption goods sector and the energy production?__
+
+The marginal return of capital is:
+
+- $\alpha y_t / k_{g,t-1}$ in the final goods sector 
+- $p_{e,t} = \alpha e_t / k_{e,t-1}$ in the energy sector
+
+The fact that both are equal pins down the optimal allocation of capital between both sectors.
+
+8. __Update the modile accordingly. Compute the new steady-state.__
+
+*We can just use the steady-function: it should work given a good enough initial guess for the capital.*
+
+
+## Damage function
+
+We now add a schematic damage function  in the spirit of DICE to the model. We assume that the production of final goods is made according to:
+
+$$y_t = exp(a_t) (1-\omega_t) k_{g,t-1}^{\alpha}e_t^{\alpha_e}$$
+
+
+where damage $\omega_t$ is a damage that is a function of global temperature $T_t$:
+
+$$\omega_t = {gw}_t \kappa_{\omega} T$$
+ 
+with $\kappa_{\omega} =0.1$. For practical reasons, we also add a dummy variable ${gw}_t$ equal to 1, only if we take into account the effects of global warming.
+
+Global temperature itself cumulates the effects of past energy consumption
+
+$$T_t = \rho_T T_{t-1} +  \kappa_{e}  e_t$$
+
+where autocorrelation term $\rho_T=0.99$ is close to 1.
+
+9. __Add the new equations to the model. Which of the other equations need to be modified? Does the new setup has any effect on the price of energy?__
+
+Because of cobb-douglas production, the formula for the marginal return on energy is unmodified. There is an effect on the price of energy though, throught the adverse effect on productivity.
+
+10. __Make a perfect foresight simulation starting from an initial steady-state where $gw_0=0$ and assuming $\forall t\geq 1 gw_t = 1$. Comment on the transition and the new steady-state.__
+
+11. __Assume the government levies a fixed, proportional tax on energy $\tau>0$. Which equations do you need to change? Perform a deterministic simulation and compare to the former case.__
+
+## Energy transition
+
+Now we assume there are two energy sectors $f$ and $r$ (for fossil and renewables). Capital is allocated between the two sectors in order to produce:
+
+$$e_{f,t} = k_{f,t-1}^{\alpha}$$
+$$e_{r,t} = exp(\theta_r) k_{f,t-1}^{\alpha}$$
+
+where exogenous shock $\theta_r$ is the relative productivity of the renewable sector with respect to the fossil one. For the sake of simplicity, we assume that both kinds of energy are perfectly substitutable to produce total energy $$e_t=e_{r,t}+e_{f,t}$$.
+
+We also make the assumption that global warming results from fossil energy only:
+
+$$T_t = \rho_T T_{t-1} +  \kappa_{e}  e_{f,t}$$
+
+12. __Create a new modfile model_3, corresponding to the new model. What is the price of energy? Of fossil and renewable energy? What is the marginal return of capital in each sector?__
+
+The price of fossil and renewable energies are respectively:
+$$p^e_{f,t} = \alpha_e y_t / e_t$$
+$$p^e_{r,t} = \alpha_e y_t / e_t$$
+
+They are identical!
+
+As for the marginal return of capital in each sector, it is 
+
+$$mr_{f,t} = \alpha y_t / k_{f,t-1}$$
+$$mr_{f,t} = \alpha e_{f,t} / k_{f,t-1}$$
+$$mr_{r,t} = \alpha e_{r,t} / k_{r,t-1}$$
+
+The identity of the three options to invest capital defines optimal allocation.
+
+We observe that when $\theta_t$ all formulas leading to capital allocations are exactly the same for the two energy sectors. 
+
+13. __We assume that $\theta_{r,t}$ remains constant and equal to 0. As in section 2, make a perfect foresight scenario with global warming.__
+
+Here we observe that despite, the negative externalities of fossil fuels, the price of fossil fuels and the amount of capital allocated to its production is exactly the same at the one allocated to renewable energies.
+
+14. __What is the effect of adding a tax on fossil fuels? On the long run equilibrium? On the transition?__
+
+In this model, the effect of a proportional tax on fossil fuels that is rebated to households as a lump-sum subsidy only shows up in the definition of the price of fossil fuels:
+
+$$p^e_{r,t} = \alpha_e y_t / e_t (1+\tau)$$
+
+Setting up a higher $\tau$ allows to avoid the climate damages, which allows for higher consumption/production along the transition. The effect is the same on the steady-state.
+
+
+15. __*Propose* different ways to improve the model.__
+
+
+
 
