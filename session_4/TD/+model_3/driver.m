@@ -227,6 +227,7 @@ oo_.steady_state(4) = oo_.steady_state(3)^M_.params(1);
 oo_.steady_state(8) = oo_.steady_state(1)^M_.params(1);
 oo_.steady_state(9) = 1/M_.params(3)-(1-M_.params(5));
 oo_.steady_state(11) = 0;
+oo_.steady_state(10) = 0;
 if M_.exo_nbr > 0
 	oo_.exo_simul = ones(M_.maximum_lag,1)*oo_.exo_steady_state';
 end
@@ -242,7 +243,7 @@ ys0_= oo_.steady_state;
 ex0_ = oo_.exo_steady_state;
 oo_.exo_steady_state(2) = 1;
 steady;
-options_.periods = 400;
+options_.periods = 800;
 perfect_foresight_setup;
 perfect_foresight_solver;
 var_list_ = {'y';'c'};

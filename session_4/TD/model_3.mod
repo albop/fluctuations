@@ -37,6 +37,7 @@ e = k_e^alpha;
 y = k^alpha;
 mrk = 1/beta - (1-delta);
 T = 0;
+omega = 0;
 end;
 
 steady; // this works as long as initial guess for capital is not too bad
@@ -49,7 +50,7 @@ end;
 
 steady;
 
-perfect_foresight_setup(periods=400);
+perfect_foresight_setup(periods=800);
 perfect_foresight_solver;
 
 rplot y c;

@@ -61,31 +61,31 @@ T     		 6.78851
 --------------------------------------------------------
 MODEL SIMULATION:
 
-Iter: 1,	 err. = 0.276236,	 time = 0.210091
+Iter: 1,	 err. = 0.276236,	 time = 0.284607
 warning: matrix singular to machine precision
 warning: called from
     sim1>lin_solve at line 193 column 3
     sim1 at line 126 column 12
     perfect_foresight_solver_core at line 99 column 68
     perfect_foresight_solver at line 63 column 5
-    driver at line 247 column 1
+    driver at line 248 column 1
     dynare at line 289 column 5
 
 WARNING : Failed to find a solution to the linear system.
-Iter: 2,	 err. = 0.00126455,	 time = 0.243393
+Iter: 2,	 err. = 0.00126455,	 time = 0.267731
 warning: matrix singular to machine precision
 warning: called from
     sim1>lin_solve at line 193 column 3
     sim1 at line 126 column 12
     perfect_foresight_solver_core at line 99 column 68
     perfect_foresight_solver at line 63 column 5
-    driver at line 247 column 1
+    driver at line 248 column 1
     dynare at line 289 column 5
 
 WARNING : Failed to find a solution to the linear system.
-Iter: 3,	 err. = 5.87385e-07,	 time = 0.196274
+Iter: 3,	 err. = 5.87385e-07,	 time = 0.26683
 
-Total time of simulation: 0.676308.
+Total time of simulation: 0.848907.
 --------------------------------------------------------
 
 Perfect foresight solution found.
