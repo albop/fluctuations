@@ -1,0 +1,92 @@
+Starting Dynare (version 5.2).
+Calling Dynare with arguments: none
+Starting preprocessing of the model file ...
+Found 11 equation(s).
+Evaluating expressions...done
+Computing static model derivatives (order 1).
+Computing dynamic model derivatives (order 1).
+Processing outputs ...
+done
+Preprocessing completed.
+
+Randomize initial guess...
+
+STEADY-STATE RESULTS:
+
+k     		 3.04064
+k_g   		 2.76422
+k_e   		 0.276422
+e     		 0.679942
+p_e   		 0.191976
+c     		 1.00126
+i     		 0.304064
+y     		 1.30533
+mrk   		 0.141667
+omega 		 0
+T     		 6.79942
+
+
+
+
+Residuals of the static equations:
+
+Equation number 1 : 0 : k
+Equation number 2 : 0 : y
+Equation number 3 : 0 : e
+Equation number 4 : 0 : 4
+Equation number 5 : 0 : p_e
+Equation number 6 : 0 : mrk
+Equation number 7 : 0 : 7
+Equation number 8 : 0 : 8
+Equation number 9 : 0 : c
+Equation number 10 : 0 : omega
+Equation number 11 : 0 : T
+
+
+
+STEADY-STATE RESULTS:
+
+k     		 2.74627
+k_g   		 2.49661
+k_e   		 0.249659
+e     		 0.659484
+p_e   		 0.178769
+c     		 0.904326
+i     		 0.274627
+y     		 1.17895
+mrk   		 0.141667
+omega 		 0.0659484
+T     		 6.59484
+
+--------------------------------------------------------
+MODEL SIMULATION:
+
+Iter: 1,	 err. = 0.264938,	 time = 0.103806
+warning: matrix singular to machine precision
+warning: called from
+    sim1>lin_solve at line 193 column 3
+    sim1 at line 126 column 12
+    perfect_foresight_solver_core at line 99 column 68
+    perfect_foresight_solver at line 63 column 5
+    driver at line 242 column 1
+    dynare at line 289 column 5
+
+Iter: 2,	 err. = 0.00118577,	 time = 0.0975266
+warning: matrix singular to machine precision
+warning: called from
+    sim1>lin_solve at line 193 column 3
+    sim1 at line 126 column 12
+    perfect_foresight_solver_core at line 99 column 68
+    perfect_foresight_solver at line 63 column 5
+    driver at line 242 column 1
+    dynare at line 289 column 5
+
+Iter: 3,	 err. = 5.19211e-07,	 time = 0.0972977
+
+Total time of simulation: 0.325104.
+--------------------------------------------------------
+
+Perfect foresight solution found.
+
+Total computing time : 0h00m00s
+Note: warning(s) encountered in MATLAB/Octave code
