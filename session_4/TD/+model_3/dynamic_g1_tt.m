@@ -22,6 +22,6 @@ assert(length(T) >= 5);
 
 T = model_3.dynamic_resid_tt(T, y, x, params, steady_state, it_);
 
-T(5) = getPowerDeriv(y(16)/y(10),(-params(4)),1);
+T(5) = getPowerDeriv(y(14)/y(8),(-params(4)),1);
 
 end

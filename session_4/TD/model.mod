@@ -24,14 +24,16 @@ y = k^alpha;
 mrk = 1/beta - (1-delta);
 end;
 
+steady;
+
 resid;
 
-//endval;
-//a = 0.1;
-//end;
+endval;
+a = 0.1; // fix exogenous varables
+end;
 
+steady;
 //resid;
-
 
 perfect_foresight_setup(periods=200);
 perfect_foresight_solver;

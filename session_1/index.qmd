@@ -1,5 +1,7 @@
 ---
 title: "Solving DSGE models"
+author: "Pablo Winant"
+subtitle: "Macro II - Fluctuations"
 format:
     revealjs:
         navigation-mode: grid
@@ -7,6 +9,8 @@ format:
         toc: true
         toc-depth: 1
         toc-title: Plan
+    beamer:
+        output-file: solving_dsge.pdf
 ---
 
 ## Plan for the rest of the course
@@ -16,9 +20,9 @@ format:
 - session 5:
     - open economy
 - session 6:
-    - monetary policy
+    - heterogeneity
 - session 7:
-    - heterogeneity and DSGE models
+    - climate change
 
 # Introduction
 
@@ -26,7 +30,7 @@ format:
 
 ::: columns
 
-:::: {.column width=70%}
+:::: {.column width=80%}
 
 What is the main specificity of economic modeling?
 
@@ -41,7 +45,7 @@ In (macro)economics, we *model* the behaviour of economic agents by specifying:
 
 ::::
 
-:::: {.column width=30%}
+:::: {.column width=20%}
 
 ![](assets/lucifer.jpg){.fragment}
 
@@ -65,7 +69,7 @@ This has important implications:
 
 ::: columns
 
-:::: column
+:::: {.column width=60%}
 
 - ~2000 Michel Juillard created a specialized software to solve DSGE models
     - DSGE: Dynamic Stochastic General Equilibrium
@@ -82,7 +86,7 @@ This has important implications:
 
 ::::
 
-:::: column
+:::: {.column width=40%}
 
 ![Michel Juillard](assets/michel.jpeg)
 
@@ -95,7 +99,10 @@ This has important implications:
 - Nowadays most DSGE models built in institutions have a Dynare version (IMF/GIMF, EC/Quest, ECB/, NYFed/FRBNY)
     - they are usually based on the *midsize model* from Smets & Wouters (10 equations)
     - but have grown up a lot (>>100 equations)
-- Although they are (very slowly) diversifying their model
+- Institutions they are (slowly) diversifying their model
+    - CGEs
+    - Agent-based
+    - Semi-structural models (again)
 
 # Solving a model
 
@@ -112,7 +119,7 @@ The ingredients:
 
 - $y_t\in\mathbb{R}^n$: the vector of endogenous variables
 - $\epsilon_t\in\mathbb{R}^{n_e}$: the vector of exogenous variables
-    - we assume that $\epsilon_t$ is zero-meaned gaussian process
+    - we assume that $\epsilon_t$ is zero-mean gaussian process
 - $f: \mathbb{R}^n\rightarrow \mathbb{R}^n$: the model equations
 
 ::::
@@ -154,7 +161,10 @@ Using Dynare's timing conventions:
     - when is capital known?
     - when is investment known?
 
-- Add a multiplicative investment efficiency shock $\chi_t$. Assume it is an $AR1$ driven by innovation $\eta_t$ and autorcorrelation $\rho_{\chi}$
+- Add a multiplicative investment efficiency shock $\chi_t$. Assume it is an $AR1$ driven by innovation $\eta_t$ and autocorrelation $\rho_{\chi}$
+
+## Example: correction
+
 
 ##  Steady-state
 
@@ -191,7 +201,7 @@ It is an equation defining implicitly the function $g()$
 
 ## The state-space{auto-animate="true"}
 
-$$\mathbb{E}_t \left[ f(g(g(y_t,\epsilon_{t+1}),\epsilon_t), g(y_{t-1},\epsilon_t), y_{t-1}, \epsilon_t) \right]= 0$$
+$$\mathbb{E}_t \left[ f(g(g(y_{t-1},\epsilon_{t}),\epsilon_{t+1}), g(y_{t-1},\epsilon_t), y_{t-1}, \epsilon_t) \right]= 0$$
 
 In this expression, $y_{t-1},\epsilon_t$ is the state-space.
 
@@ -212,7 +222,7 @@ First we can perform a Taylor expansion with respect to future shock:
  & & \mathbb{E}_{\epsilon'} \left[ f(g(g(y,\epsilon),\epsilon'), g(y,\epsilon), y, \epsilon) \right]  \\
 = & &  \mathbb{E}_{\epsilon'}\left[ f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) \right] \\ 
   & & +  \mathbb{E}_{\epsilon'} \left[ f^{\prime}_{y_{t+1}}(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) g^{\prime}_{\epsilon} \epsilon^\prime\right] + o(\epsilon^{\prime}) \\
-\approx & & f(g(g(y,0),\epsilon), g(y,\epsilon), y, \epsilon)
+\approx & & f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon)
 \end{align}
 
 . . .
@@ -268,11 +278,6 @@ Obviously, the dynamics of the model are given by $y_t = X y_{t-1}$.
 
 For the solution  to the model to be stationary, the spectral radius of $X$ should be smaller than 1.
 
-::: notes
-
-TODO: make a specific slide about the dynamics
-
-:::
 
 ## Multiplicity of solution
 
@@ -356,7 +361,7 @@ The model is well specified iff we can sort the eigenvalues as:
 $$|\lambda_1| \leq \cdots \leq |\lambda_{n}| \leq 1 < |\lambda_{n+1}| \leq \cdots  |\lambda_{n+k}| \leq \underbrace{|\lambda_{n+k+1}| \cdots \leq |\lambda_{2 n}|}_{\text{infinite eigenvalues}}$$
 
 
-::: {.callout-important}
+::: {.callout-note}
 
 ### Blanchard-Kahn criterium
 
@@ -411,10 +416,10 @@ Also, one can easily compute the likelihood of the model given some data to perf
 Recall the system to solve:
 $$F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0$$
 
-bnut now assume the decision rules today and tomorrow are different:
+but now assume the decision rules today and tomorrow are different:
 
 - today: $y_t = g(y_{t-1}, \epsilon_t) = \overline{y} + X y_{t-1} + g_y \epsilon_t$
-- tomorrow: $y_{t+1} = \tilde{g}(y_t, \epsilon_{t+1}) + \tilde{X} y_{t-1} + \tilde{g}_y \epsilon_t$
+- tomorrow: $y_{t+1} = \tilde{g}(y_t, \epsilon_{t+1}) = \overline{y} + \tilde{X} y_{t-1} + \tilde{g}_y \epsilon_t$
 
 Then the Ricatti equation is written:
 
@@ -437,7 +442,7 @@ And the full algorithm can be described as:
 
 ## Linear Time Iteration (3)
 
-It can be shown that, started from a random initial guess, the linear time-iteration algorithm always converges to the solution $X$ with the smallest modulus:
+It can be shown that, started from a random initial guess, the linear time-iteration algorithm converges to the solution $X$ with the smallest modulus:
 
 $$\underbrace{|\lambda_1| \leq \cdots  \leq |\lambda_n|}_{\text{Selected eigenvalues}} \leq |\lambda_{n+1}|\cdots \leq |\lambda_{2n}|$$
 

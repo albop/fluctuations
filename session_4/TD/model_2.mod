@@ -10,12 +10,12 @@ gamma = 4;
 
 model;
 k = k(-1)*(1-delta) + i;
-y = exp(a)*k_g(-1)^alpha*e^alpha_e;
-e = k_e(-1)^alpha;
-k = k_g + k_e;
+y = exp(a)*k_g^alpha*e^alpha_e;
+e = k_e^alpha;
+k(-1) = k_g + k_e;
 p_e = alpha_e * y/e;
-mrk =     alpha*y/k_g(-1); //marginal productivity of capital in the final sector
-mrk = p_e*alpha*e/k_e(-1); //marginal productivity of capital in the energy sector
+mrk =     alpha*y/k_g; //marginal productivity of capital in the final sector
+mrk = p_e*alpha*e/k_e; //marginal productivity of capital in the energy sector
 beta*(c(1)/c)^(-gamma)*(1-delta+mrk(1)) - 1;
 c = y-i;
 end;

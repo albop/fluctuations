@@ -22,6 +22,6 @@ assert(length(T) >= 8);
 
 T = model_2.dynamic_g1_tt(T, y, x, params, steady_state, it_);
 
-T(8) = getPowerDeriv(y(13)/y(9),(-params(4)),2);
+T(8) = getPowerDeriv(y(11)/y(7),(-params(4)),2);
 
 end

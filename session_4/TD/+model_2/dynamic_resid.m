@@ -23,30 +23,30 @@ if T_flag
     T = model_2.dynamic_resid_tt(T, y, x, params, steady_state, it_);
 end
 residual = zeros(9, 1);
-lhs = y(4);
-rhs = y(1)*(1-params(5))+y(10);
+lhs = y(2);
+rhs = y(1)*(1-params(5))+y(8);
 residual(1) = lhs - rhs;
-lhs = y(11);
+lhs = y(9);
 rhs = T(1)*T(2);
 residual(2) = lhs - rhs;
-lhs = y(7);
-rhs = y(3)^params(1);
+lhs = y(5);
+rhs = y(4)^params(1);
 residual(3) = lhs - rhs;
-lhs = y(4);
-rhs = y(5)+y(6);
+lhs = y(2);
+rhs = y(3)+y(4);
 residual(4) = lhs - rhs;
-lhs = y(8);
-rhs = y(11)*params(2)/y(7);
+lhs = y(6);
+rhs = y(9)*params(2)/y(5);
 residual(5) = lhs - rhs;
-lhs = y(12);
-rhs = y(11)*params(1)/y(2);
+lhs = y(10);
+rhs = y(9)*params(1)/y(3);
 residual(6) = lhs - rhs;
-lhs = y(12);
-rhs = y(7)*params(1)*y(8)/y(3);
+lhs = y(10);
+rhs = y(5)*params(1)*y(6)/y(4);
 residual(7) = lhs - rhs;
-residual(8) = T(3)*(1-params(5)+y(14))-1;
-lhs = y(9);
-rhs = y(11)-y(10);
+residual(8) = T(3)*(1-params(5)+y(12))-1;
+lhs = y(7);
+rhs = y(9)-y(8);
 residual(9) = lhs - rhs;
 
 end

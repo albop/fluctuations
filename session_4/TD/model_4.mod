@@ -1,4 +1,4 @@
-var k, k_g, k_f, k_r, e, e_f, e_r, p_e, p_f, p_r, c, i, y, mrk, omega, T;
+var k, k_g, k_f, k_r, e, e_f, e_r, p_e, c, i, y, mrk, omega, T;
 varexo a, g, theta, tau;
 parameters alpha, alpha_e, beta, gamma, delta, kappa_omega, rho_T;
 
@@ -12,17 +12,15 @@ rho_T = 0.9;
 
 model;
 k = k(-1)*(1-delta) + i;
-y = (1-omega)*exp(a)*k_g(-1)^alpha*e^alpha_e;
+y = (1-omega)*exp(a)*k_g^alpha*e^alpha_e;
 e = e_f + e_r;
-e_f =            k_f(-1)^alpha;
-e_r = exp(theta)*k_r(-1)^alpha;
-k = k_f + k_r + k_g;
+e_f =            k_f^alpha;
+e_r = exp(theta)*k_r^alpha;
+k(-1) = k_f + k_r + k_g;
 p_e = alpha_e * y/e;
-p_f = alpha_e * y/e;
-p_r = alpha_e * y/e *(1+tau);
-mrk =     alpha*y/k_g(-1); //marginal productivity of capital in the final sector
-mrk = p_e*alpha*e_f/k_f(-1); //marginal productivity of capital in the fossil energy sector
-mrk = p_e*alpha*e_r/k_r(-1); //marginal productivity of capital in the green energy sector
+mrk =      alpha*  y/k_g;         //marginal productivity of capital in the final sector
+mrk =  p_e*alpha*e_f/k_f/(1+tau); //marginal productivity of capital in the fossil energy sector
+mrk =  p_e*alpha*e_r/k_r;         //marginal productivity of capital in the green energy sector
 beta*(c(1)/c)^(-gamma)*(1-delta+mrk(1)) - 1;
 c = y-i;
 omega = g*kappa_omega*T;
@@ -43,8 +41,6 @@ i = delta*k;
 c = y-i;
 y = k_g^alpha*e^alpha_e;
 p_e = alpha_e * y/e;
-p_f = p_e;
-p_r = p_e;
 
 mrk = 1/beta - (1-delta);
 T = 0;
@@ -54,18 +50,22 @@ steady; // this works as long as initial guess for capital is not too bad
 
 resid;
 
-
+//shocks;
+//var tau;
+//periods 1:50;
+//values 0.05;
+//end;
 
 endval;
-tau = 0.6;
+tau = 0.1;
 g = 1; // this sets g=1 from t=1 onwards.
 end;
 
 steady;
 
-perfect_foresight_setup(periods=400);
+perfect_foresight_setup(periods=200);
 perfect_foresight_solver;
 
-rplot p_e p_r;
+//rplot p_e p_r;
 
-rplot y c;
+//rplot y c;

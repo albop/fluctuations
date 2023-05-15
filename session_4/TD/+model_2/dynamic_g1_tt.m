@@ -22,9 +22,9 @@ assert(length(T) >= 7);
 
 T = model_2.dynamic_resid_tt(T, y, x, params, steady_state, it_);
 
-T(4) = exp(x(it_, 1))*getPowerDeriv(y(2),params(1),1);
-T(5) = getPowerDeriv(y(7),params(2),1);
-T(6) = (-y(13))/(y(9)*y(9));
-T(7) = getPowerDeriv(y(13)/y(9),(-params(4)),1);
+T(4) = exp(x(it_, 1))*getPowerDeriv(y(3),params(1),1);
+T(5) = getPowerDeriv(y(5),params(2),1);
+T(6) = (-y(11))/(y(7)*y(7));
+T(7) = getPowerDeriv(y(11)/y(7),(-params(4)),1);
 
 end

@@ -46,49 +46,29 @@ Equation number 11 : 0 : T
 
 STEADY-STATE RESULTS:
 
-k     		 2.77447
-k_g   		 2.49953
-k_e   		 0.274946
-e     		 0.678851
-p_e   		 0.191259
-c     		 0.902885
-i     		 0.277447
-y     		 1.18033
+k     		 3.04934
+k_g   		 2.74716
+k_e   		 0.302187
+e     		 0.698365
+p_e   		 0.204333
+c     		 0.992334
+i     		 0.304934
+y     		 1.29727
 mrk   		 0.141667
-omega 		 0.0678851
-T     		 6.78851
+omega 		 0.00698365
+T     		 6.98365
 
 --------------------------------------------------------
 MODEL SIMULATION:
 
-Iter: 1,	 err. = 0.276236,	 time = 0.284607
-warning: matrix singular to machine precision
-warning: called from
-    sim1>lin_solve at line 193 column 3
-    sim1 at line 126 column 12
-    perfect_foresight_solver_core at line 99 column 68
-    perfect_foresight_solver at line 63 column 5
-    driver at line 248 column 1
-    dynare at line 289 column 5
+Iter: 1,	 err. = 0.0288554,	 time = 0.384445
+Iter: 2,	 err. = 1.25223e-05,	 time = 0.371643
+Iter: 3,	 err. = 5.38836e-11,	 time = 0.354591
 
-WARNING : Failed to find a solution to the linear system.
-Iter: 2,	 err. = 0.00126455,	 time = 0.267731
-warning: matrix singular to machine precision
-warning: called from
-    sim1>lin_solve at line 193 column 3
-    sim1 at line 126 column 12
-    perfect_foresight_solver_core at line 99 column 68
-    perfect_foresight_solver at line 63 column 5
-    driver at line 248 column 1
-    dynare at line 289 column 5
-
-WARNING : Failed to find a solution to the linear system.
-Iter: 3,	 err. = 5.87385e-07,	 time = 0.26683
-
-Total time of simulation: 0.848907.
+Total time of simulation: 1.14382.
 --------------------------------------------------------
 
 Perfect foresight solution found.
 
-Total computing time : 0h00m01s
+Total computing time : 0h00m02s
 Note: warning(s) encountered in MATLAB/Octave code

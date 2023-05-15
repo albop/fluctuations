@@ -1,5 +1,7 @@
 ---
 title: "Small Open Economy Extension (IRBC)"
+author: "Pablo Winant"
+subtitle: "Macro II - Fluctuations"
 format:
     revealjs:
         navigation-mode: grid
@@ -7,6 +9,8 @@ format:
         toc: true
         toc-depth: 1
         toc-title: Plan
+    beamer:
+        output-file: irbc.pdf
 ---
 
 # Introduction and Basic Facts
@@ -37,6 +41,7 @@ After the success of RBC models to match business cycles it didn't take long bef
 - Most famous: Backus, Kehoe, Kydland (1992) (freshwater economists)
 
 Very successful methodology:
+
 - facts at odd with theoretical predictions have been called "puzzles"
 
 
@@ -75,8 +80,6 @@ Take an endowment economy: $(y_t)_t$ is exogenously given.
 
 $$\max_{c_t} \sum_{t=0}^{\infty} \beta^t u(c_t)$$
 
-s.t.
-
 $$c_t+a_{t+1} \leq y_t + (1+r) a_t$$
 
 Country takes as given world interest rate $r$.
@@ -96,13 +99,16 @@ We solve this problem with the terminal conditions:
 ## Endowment Model (3)
 
 First order conditions:
-$$\begin{align} u^{\prime}(c_t)=\lambda_t \\ \lambda_t = \beta (1+r) \lambda_{t+1}\end{align}$$
 
-Under the technical assumption $\beta (1+r)=1$ we get:
+\begin{align}
+u^{\prime}(c_t)& =& \lambda_t \\
+ \lambda_t &=& \beta (1+r) \lambda_{t+1}
+\end{align}
+
+
+Under the *technical assumption* $\beta (1+r)=1$ we get:
 
 $$c_0 = \frac{r}{1+r}\left\{ (1+r) a_0 + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}\right\}$$
-
-Waht do we recognize?
 
 . . .
 
@@ -131,12 +137,19 @@ $$c_0 = \frac{r}{1+r}\left\{ (1+r) a_0 + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}
 What is the effect of an increase in $a_0$?
 
 - consumption rises permanently
+    - by small amount $r$ corresponding to interests
 - there is a unit root
 
 ## Exercise
 
 From the first order conditions 
-$$\begin{align} u^{\prime}(c_t)=\lambda_t \\ \lambda_t = \beta (1+r) \lambda_{t+1}\end{align}$$
+
+
+\begin{align}
+u^{\prime}(c_t) & = & \lambda_t \\
+\lambda_t & = &  \beta (1+r) \lambda_{t+1}
+\end{align}
+
 
 assuming $u(c_t) = \log (c_t)$, can you get the equation for the law of motion of $a_t$  and show the presence of a unit root?
 
@@ -145,28 +158,31 @@ assuming $u(c_t) = \log (c_t)$, can you get the equation for the law of motion o
 
 We add capital and production to our endowment economy:
 $$y_t = z_t k_t^\alpha$$
+$$k_t = (1-\delta) k_{t-1} + i_{t-1}$$
 
 The aggregate resource constraint:
 
 $$a_{t+1} + c_t + i_t = (1+r) a_t + z_t$$
 
-. . .
 
-- optimality conditions:
-    $$\lambda_t = \beta \lambda_{t+1} (1+r)$$
-    $$\lambda_t = \beta \lambda_{t+1}\left[ (1-\delta) + z_{t+1} f^{\prime}(k_{t+1}) \right]$$
+## Adding capital: optimality conditions
 
+We get first order conditions
+
+$$\lambda_t = \beta \lambda_{t+1} (1+r)$$
+$$\lambda_t = \beta \lambda_{t+1}\left[ (1-\delta) + z_{t+1} f^{\prime}(k_{t+1}) \right]$$
+
+where $\lambda_t$ is lagrange multiplier associated to budget constraint.
 
 ## Adding capital: first order conditions
 
-
-The combination of these two constraints yields the simple condition:
+Since $\lambda_t$ (constraint is always binding), we get:
 $$k_{t+1} = \left( \frac{r+\delta}{a z_{t+1}}\right)^{\frac{1}{\alpha-1}}$$
 
 and investment $$i_t = \left( \frac{r+\delta}{a z_{t+1}}\right)^{\frac{1}{\alpha-1}}- (1-\delta)\left( \frac{r+\delta}{a z_{t}}\right)^{\frac{1}{\alpha-1}}$$
 
 
-Since investment comoves one to one with productivity shock (conditionnally on $z_{t-1}$), it is way to volatile.
+Since investment comoves one to one with productivity shock (conditionnally on $z_{t-1}$), it is way too volatile.
 
 <!-- 
 ## The elusive gains of financial integration
@@ -186,37 +202,52 @@ $$a_{t+1} + c_t + i_t + \frac{\omega}{2}\frac{(i_t-\delta k^{\star})}{k_t} = (1+
 
 $$k_{t+1} = (1-\delta) k_t + i_t$$
 
-where $\omega$ is an adjustment friction. Typicall, $\omega$ is chosen so that the model replicates $\frac{Var(i_t)}{Var{y_t}}$
+where $\omega$ is an adjustment friction. Typically, $\omega$ is chosen so that the model replicates $\frac{Var(i_t)}{Var(y_t)}$ from the data.
 
 
 ## How to make the distribution stationary?
 
-Unit root :
+Unit root (see time series VAR for more details)
 $$a_t = a_{t-1} + ... \text{other variables in t-1} + \text{shocks in t}$$
 
 Problem:
 
 - there isn't a unique deterministic steady-state
-- the ergodic distribution of the model variables would not be defined.
+- the ergodic distribution of the model variables is not defined
 
 This raises practical issues (notably for estimation) for the *linear* model.
 
 
 ## How to get rid of the unit root?
 
-General idea: introduce a force that will pull the level of foreign assets towards an equilibrium
+General idea: introduce a force that pulls the level of foreign assets towards equilibrium
 
 Schmitt Grohe and Uribe (2004) consider many options:
+
+::: r-stack
+
+:::: {.fragment .current-visible}
 
 - debt-elastic interest rate:
     $$1+r = 1+r^{\star} + \pi(a_d)$$
     - with $\pi(0)=0$ and $\pi^{\prime}(0)>0$
     - $\pi$ can be understood as a risk premium on rising debt
-- endogenous time-discount (aka Usawa preferences) (TODO: actual version has labour)
-    $$\beta(c_t) = (1+c_t)^{-\chi}$$
-- costs of adjustment for international portfolio
 
-SGU show that the choice of the stationarization device has little effect
+::::
+
+:::: {.fragment}
+
+- endogenous time-discount (aka Usawa preferences) 
+    $$\beta(c_t) = (1+c_t)^{-\chi}$$
+- costs of adjustment for international portfolios
+
+::::
+
+:::
+
+. . .
+
+SGU show that the choice of the stationarization device has little effect for the dynamics (moments) of most variables
 
 # A benchmark Small Open Economy Model
 
@@ -229,31 +260,51 @@ SGU show that the choice of the stationarization device has little effect
 
 ## The model
 
-$$\max_{c_t} \sum_{t=0}^{\infty} \beta^t u(c_t)$$
-
-s.t.
+$$\max_{c_t, n_t} \sum_{t=0}^{\infty} \beta^t u(c_t)$$
 
 $$c_t + k_{t+1} + a_{t+1} = y_t + g_t - \frac{\omega}{2}(k_{t+1}-k_t)^2 +(1-\delta) k_t + (1+r^{\star}+\pi(a_t))a_t$$
 $$y_t = f(k_t, n_t, z_t)$$
 
 $$z_{t+1} = \rho z_t + \epsilon_{t+1}$$
 
-and $u(c, n) = \frac{1}{1-\sigma}\left(c^{\psi}(1-n)^(1-\psi))\right)^{1-\sigma}$
+and $u(c, n) = \frac{1}{1-\sigma}\left(c^{\psi}(1-n)^{1-\psi}
+)\right)^{1-\sigma}$
 
 ## Calibration
 
+::: columns
 
-| Parameters | σ | ψ    |    α |     ω |    r |   δ | ρ    | σ²      | $A^{\star}$ | χ        |
-|------------|---|------|------|-------|------|-----|------|---------|-------------|----------|
-| Values     | 2 | 1.45 | 0.32 | 0.028 | 0.04 | 0.1 | 0.42 | 0.0129  | -0.7442     | 0.000742 |
+:::: column
+
+| Parameters  | Values   |
+|-------------|----------|
+| $σ$           | 2        |
+| $ψ$           | 1.45     |
+| $α$           | 0.32     |
+| $ω$           | 0.028    |
+| $r$           | 0.04     |
+
+::::
+:::: column
+
+| Parameters  | Values   |
+|-------------|----------|
+| $δ$           | 0.1      |
+| $ρ$           | 0.42     |
+| $σ²$          | 0.0129   |
+| $A^{\star}$ | -0.7442  |
+| $χ$           | 0.000742 |
+
+::::
+:::
 
 ## Results (1/2)
 
-![](assets/irf.png)
+![Impulse Response Function](assets/irf.png){height=60%}
 
 ## Results (2/2)
 
-![](assets/sgu_moments.png)
+![Moments (from SGU)](assets/sgu_moments.png){height=60%}
 
 ## Conclusions
 

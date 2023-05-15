@@ -1,7 +1,7 @@
 Starting Dynare (version 5.2).
 Calling Dynare with arguments: none
 Starting preprocessing of the model file ...
-Found 16 equation(s).
+Found 14 equation(s).
 Evaluating expressions...done
 Computing static model derivatives (order 1).
 Computing dynamic model derivatives (order 1).
@@ -20,8 +20,6 @@ e     		 1.12883
 e_f   		 0.564414
 e_r   		 0.564414
 p_e   		 0.12432
-p_f   		 0.12432
-p_r   		 0.12432
 c     		 1.07646
 i     		 0.326901
 y     		 1.40336
@@ -41,66 +39,44 @@ Equation number 4 : 0 : e_f
 Equation number 5 : 0 : e_r
 Equation number 6 : 0 : 6
 Equation number 7 : 0 : p_e
-Equation number 8 : 0 : p_f
-Equation number 9 : 0 : p_r
-Equation number 10 : 0 : mrk
+Equation number 8 : 0 : mrk
+Equation number 9 : 0 : 9
+Equation number 10 : 0 : 10
 Equation number 11 : 0 : 11
-Equation number 12 : 0 : 12
-Equation number 13 : 0 : 13
-Equation number 14 : 0 : c
-Equation number 15 : 0 : omega
-Equation number 16 : 0 : T
+Equation number 12 : 0 : c
+Equation number 13 : 0 : omega
+Equation number 14 : 0 : T
 
 
 
 STEADY-STATE RESULTS:
 
-k     		 3.00419
-k_g   		 2.73108
-k_f   		 0.136554
-k_r   		 0.136554
-e     		 1.10058
-e_f   		 0.550289
-e_r   		 0.550289
-p_e   		 0.117182
-p_f   		 0.117182
-p_r   		 0.187491
-c     		 0.989259
-i     		 0.300419
-y     		 1.28968
+k     		 2.97216
+k_g   		 2.73988
+k_f   		 0.0834138
+k_r   		 0.148867
+e     		 1.03938
+e_f   		 0.474648
+e_r   		 0.564728
+p_e   		 0.124482
+c     		 0.996616
+i     		 0.297216
+y     		 1.29383
 mrk   		 0.141667
-omega 		 0.0550289
-T     		 5.50289
+omega 		 0.0474648
+T     		 4.74648
 
 --------------------------------------------------------
 MODEL SIMULATION:
 
-Iter: 1,	 err. = 0.238338,	 time = 0.261749
-warning: matrix singular to machine precision
-warning: called from
-    sim1>lin_solve at line 193 column 3
-    sim1 at line 126 column 12
-    perfect_foresight_solver_core at line 99 column 68
-    perfect_foresight_solver at line 63 column 5
-    driver at line 287 column 1
-    dynare at line 289 column 5
+Iter: 1,	 err. = 0.807899,	 time = 0.121307
+Iter: 2,	 err. = 0.00172971,	 time = 0.111382
+Iter: 3,	 err. = 3.7801e-07,	 time = 0.121399
 
-Iter: 2,	 err. = 0.000877085,	 time = 0.255928
-warning: matrix singular to machine precision
-warning: called from
-    sim1>lin_solve at line 193 column 3
-    sim1 at line 126 column 12
-    perfect_foresight_solver_core at line 99 column 68
-    perfect_foresight_solver at line 63 column 5
-    driver at line 287 column 1
-    dynare at line 289 column 5
-
-Iter: 3,	 err. = 2.42949e-07,	 time = 0.264725
-
-Total time of simulation: 0.816628.
+Total time of simulation: 0.36512.
 --------------------------------------------------------
 
 Perfect foresight solution found.
 
-Total computing time : 0h00m02s
+Total computing time : 0h00m01s
 Note: warning(s) encountered in MATLAB/Octave code

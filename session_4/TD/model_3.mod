@@ -7,18 +7,18 @@ alpha = 0.3;
 alpha_e = 0.1;
 beta = 0.96;
 gamma = 4;
-kappa_omega=0.01;
+kappa_omega=0.001;
 rho_T = 0.9;
 tau=0.1;
 
 model;
 k = k(-1)*(1-delta) + i;
-y = (1-omega)*exp(a)*k_g(-1)^alpha*e^alpha_e;
-e = k_e(-1)^alpha;
-k = k_g + k_e;
-p_e = alpha_e * y/e * (1+tau);
-mrk =     alpha*y/k_g(-1); //marginal productivity of capital in the final sector
-mrk = p_e*alpha*e/k_e(-1); //marginal productivity of capital in the energy sector
+y = (1-omega)*exp(a)*k_g^alpha*e^alpha_e;
+e = k_e^alpha;
+k(-1) = k_g + k_e;
+p_e = alpha_e * y/e;
+mrk =     alpha*y/k_g; //marginal productivity of capital in the final sector
+mrk = p_e*alpha*e/k_e / (1+tau); //marginal productivity of capital in the energy sector
 beta*(c(1)/c)^(-gamma)*(1-delta+mrk(1)) - 1;
 c = y-i;
 omega = g*kappa_omega*T;
