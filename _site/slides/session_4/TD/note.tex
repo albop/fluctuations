@@ -1,0 +1,447 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Climate Model and Perfect Foresight Simulation},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Climate Model and Perfect Foresight Simulation}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+Our ultimate goal consists in extending the neoclassical model to allow
+for a (\emph{very}) reduced form of climate change, and understand the
+qualitative implications. \footnote{in doing so, we follow broadly the
+  approach from Integrated Assessment Models as the DICE model.}
+
+Using Dynare timing conventions, our initial model corresponds to the
+following equations (in \texttt{model\_1.mod}):
+
+\begin{itemize}
+\tightlist
+\item
+  capital accumlation: \[k_t = (1-\delta) k_{t-1} + i_t\]
+\item
+  budget constraint: \[c_t + i_t = y_t\]
+\item
+  production: \[y_t = exp(a_t)k_{t-1}^{\alpha}\]
+\item
+  marginal return on capital \[{mr}^k_t = \frac{y_t}{k_{t-1}}\]
+\item
+  optimality condition for consumption:
+  \[\beta E_t \left[ \frac{U^{\prime}(c_{t+1})}{U^{\prime}(c_t)} (1-\delta + {mr}^k_t  )\right] = 1\]
+\end{itemize}
+
+Productivity shock \(a_t\) is exogenous.
+
+\subsection{Perfect Foresight Simulation with
+Dynare}\label{perfect-foresight-simulation-with-dynare}
+
+In the previous sessions we have used Dynare to compute stochastic
+around a given steady-state. The shocks were i.i.d random variables.
+
+This time, we will use the perfect foresight capabilities of Dynare to
+compute a deterministic simulation between an initial and a final
+steady-state. The driving exogenous process will be specified
+deterministically and determine both the initial and the final
+steady-states.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Check the \texttt{model\_1.mod} file. Modfify the initial
+  steady-state so that the resid function returns zeros.}
+\item
+  \textbf{Uncomment the endval block and the resid function afterwards.
+  This block sets the values of exogenous shock \texttt{a} in the final
+  steady-state. Change the content of endval so that final steady-state
+  is satisfied.}
+\item
+  \textbf{Uncomment the two perfect foresight instructions at the end
+  and run the modfile. Use rplot to visualize the transition.
+  Interpretation? What it is the value of \texttt{a} during the
+  transition ?.}
+\end{enumerate}
+
+\emph{The simulation lasts for 50 periods. \texttt{a} jumps from 0 to
+0.1 in period 1. During the transition, capital level is unchanged as
+the final and the initial steady-states levels are the same.}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  \textbf{Add the following block before the endval command:}
+\end{enumerate}
+
+\begin{verbatim}
+shocks;
+var a;
+periods 1:10;
+values 0.0;
+end;
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  \textbf{This command specifies that productivity shocks remains at
+  zero during the first few periods, before jumping to its final value.
+  Simulate, plot and comment on the new transition.}
+\end{enumerate}
+
+\emph{This time, we observe that in the first few periods, since
+productivity is expected to rise in the future (perfect foresight),
+current capital is comparatively less valueable. Agents consume it in
+order to smooth consumption. Capital and investment decrease over time
+while consumption has a growing path.}
+
+\emph{Eventually the economy converges to the same steady-state as
+before.}
+
+\subsection{Adding an energy sector.}\label{adding-an-energy-sector.}
+
+We now modify the model so as to add a climate externality. To that
+intent we create a new modfile \texttt{model\_2.mod}
+
+We change the production function so as to add energy as a second input:
+
+\[y_t = exp(a_t) k_{g,t-1}^{\alpha}e_t^{\alpha_e}\]
+
+with \(\alpha_e=0.1\) and where \(k_{g,t}\) is the capital used to
+produce final (consumption) goods.\footnote{Here the overall focus is on
+  climate damages from energy consumption, which is why we don't add
+  fuel stocks to the model.}
+
+Energy itself is produced on competitive markets using capital
+\(k_{e,t}\) according to production function:
+
+\[e_{t} = k_{e,t-1}^{\alpha}\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  \textbf{Which equation defines the market price of energy?}
+\end{enumerate}
+
+The price of energy is equal to its marginal productivity:
+\[p_e = \alpha_e y_t / e_t\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  \textbf{The resource constraint for capital is
+  \(k_t = k_{e,t} + k_{g,t}\). What is now the marginal return of
+  capital in both sectors ? What determines optimal allocation of
+  capital between the consumption goods sector and the energy
+  production?}
+\end{enumerate}
+
+The marginal return of capital is:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\alpha y_t / k_{g,t-1}\) in the final goods sector
+\item
+  \(p_{e,t} = \alpha e_t / k_{e,t-1}\) in the energy sector
+\end{itemize}
+
+The fact that both are equal pins down the optimal allocation of capital
+between both sectors.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  \textbf{Update the modile accordingly. Compute the new steady-state.}
+\end{enumerate}
+
+\emph{We can just use the steady-function: it should work given a good
+enough initial guess for the capital.}
+
+\subsection{Damage function}\label{damage-function}
+
+We now add a schematic damage function in the spirit of DICE to the
+model. We assume that the production of final goods is made according
+to:
+
+\[y_t = exp(a_t) (1-\omega_t) k_{g,t-1}^{\alpha}e_t^{\alpha_e}\]
+
+where damage \(\omega_t\) is a damage that is a function of global
+temperature \(T_t\):
+
+\[\omega_t = {gw}_t \kappa_{\omega} T\]
+
+with \(\kappa_{\omega} =0.1\). For practical reasons, we also add a
+dummy variable \({gw}_t\) equal to 1, only if we take into account the
+effects of global warming.
+
+Global temperature itself cumulates the effects of past energy
+consumption
+
+\[T_t = \rho_T T_{t-1} +  \kappa_{e}  e_t\]
+
+where autocorrelation term \(\rho_T=0.99\) is close to 1.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  \textbf{Add the new equations to the model. Which of the other
+  equations need to be modified? Does the new setup has any effect on
+  the price of energy?}
+\end{enumerate}
+
+Because of cobb-douglas production, the formula for the marginal return
+on energy is unmodified. There is an effect on the price of energy
+though, throught the adverse effect on productivity.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\item
+  \textbf{Make a perfect foresight simulation starting from an initial
+  steady-state where \(gw_0=0\) and assuming
+  \(\forall t\geq 1 gw_t = 1\). Comment on the transition and the new
+  steady-state.}
+\item
+  \textbf{Assume the government levies a fixed, proportional tax on
+  energy \(\tau>0\). Which equations do you need to change? Perform a
+  deterministic simulation and compare to the former case.}
+\end{enumerate}
+
+\subsection{Energy transition}\label{energy-transition}
+
+Now we assume there are two energy sectors \(f\) and \(r\) (for fossil
+and renewables). Capital is allocated between the two sectors in order
+to produce:
+
+\[e_{f,t} = k_{f,t-1}^{\alpha}\]
+\[e_{r,t} = exp(\theta_r) k_{f,t-1}^{\alpha}\]
+
+where exogenous shock \(\theta_r\) is the relative productivity of the
+renewable sector with respect to the fossil one. For the sake of
+simplicity, we assume that both kinds of energy are perfectly
+substitutable to produce total energy \[e_t=e_{r,t}+e_{f,t}\].
+
+We also make the assumption that global warming results from fossil
+energy only:
+
+\[T_t = \rho_T T_{t-1} +  \kappa_{e}  e_{f,t}\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{11}
+\tightlist
+\item
+  \textbf{Create a new modfile model\_3, corresponding to the new model.
+  What is the price of energy? Of fossil and renewable energy? What is
+  the marginal return of capital in each sector?}
+\end{enumerate}
+
+The price of fossil and renewable energies are respectively:
+\[p^e_{f,t} = \alpha_e y_t / e_t\] \[p^e_{r,t} = \alpha_e y_t / e_t\]
+
+They are identical!
+
+As for the marginal return of capital in each sector, it is
+
+\[mr_{f,t} = \alpha y_t / k_{f,t-1}\]
+\[mr_{f,t} = \alpha e_{f,t} / k_{f,t-1}\]
+\[mr_{r,t} = \alpha e_{r,t} / k_{r,t-1}\]
+
+The identity of the three options to invest capital defines optimal
+allocation.
+
+We observe that when \(\theta_t\) all formulas leading to capital
+allocations are exactly the same for the two energy sectors.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{12}
+\tightlist
+\item
+  \textbf{We assume that \(\theta_{r,t}\) remains constant and equal to
+  0. As in section 2, make a perfect foresight scenario with global
+  warming.}
+\end{enumerate}
+
+Here we observe that despite, the negative externalities of fossil
+fuels, the price of fossil fuels and the amount of capital allocated to
+its production is exactly the same at the one allocated to renewable
+energies.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{13}
+\tightlist
+\item
+  \textbf{What is the effect of adding a tax on fossil fuels? On the
+  long run equilibrium? On the transition?}
+\end{enumerate}
+
+In this model, the effect of a proportional tax on fossil fuels that is
+rebated to households as a lump-sum subsidy only shows up in the
+definition of the price of fossil fuels:
+
+\[p^e_{r,t} = \alpha_e y_t / e_t (1+\tau)\]
+
+Setting up a higher \(\tau\) allows to avoid the climate damages, which
+allows for higher consumption/production along the transition. The
+effect is the same on the steady-state.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{14}
+\tightlist
+\item
+  \textbf{\emph{Propose} different ways to improve the model.}
+\end{enumerate}
+
+
+
+\end{document}
